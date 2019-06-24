@@ -1,0 +1,189 @@
+﻿
+
+<div class="breadcrumb">
+    <h1>Money for Projects</h1>
+    <ul>
+        <li><a href="">Dashboard</a></li>
+        <li>Version 1</li>
+    </ul>
+</div>
+
+<div class="separator-breadcrumb border-top"></div>
+
+
+<div ng-if="showlist==true">
+
+    <!--<div style="text-align:right" class="col-md-4">
+        <select ng-model="projectid" data-ng-change="getIncomingsByProjectID(projectid)" style="margin-bottom:10px;" class="form-control">
+            <option selected value="0">- Select Project -</option>
+            <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
+        </select>
+    </div>-->
+
+    <div class="row">
+        <div class="col-md-3">
+            <button data-ng-click="addnewincoming()" type="button" class="btn btn-success m-1"> <i class="fa fa-plus"></i> Add Money</button>
+        </div>
+
+        <div style="text-align:center;" class="col-md-6 form-inline">
+            <div class="form-group">
+                <label style="width:auto; margin-right:7px;">Select Project</label>
+                <select ng-model="projectid" data-ng-change="getIncomingsByProjectID(projectid)" style="margin-bottom:10px;" class="form-control">
+                    <option selected value="0">- Select Project -</option>
+                    <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div style="text-align:right" class="col-md-3">
+            <input class="form-control" placeholder="Type to Search" type="text" data-ng-model="search" name="name" value="" />
+        </div>
+    </div>
+
+
+    <!--<button data-ng-click="addnewincoming()" type="button" class="btn btn-success m-1"> <i class="fa fa-plus"></i> Add Money</button>-->
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th ng-click="sort('amount')">
+                    Amount
+                    <i class="fa" ng-show="sortKey=='amount'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+
+                </th>
+                <th ng-click="sort('sourceName')">
+                    Source Name
+                    <i class="fa" ng-show="sortKey=='sourceName'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+
+                </th>
+
+                <th>
+                    Proof
+                </th>
+               
+
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+
+        <tr ng-repeat="obj in ListOfIncoming|orderBy:sortKey:reverse|filter:search">
+            <td>
+                {{obj.amount}}
+            </td>
+            <td>
+                {{obj.sourceName}}
+            </td>
+            <td>
+
+
+
+                <img ng-if="obj.receiptPath==''|| obj.receiptPath == null" style="height:50px; width:50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" />
+                <a>
+                    <img ng-click="makezoom(obj.receiptPath)" ng-if="obj.receiptPath != null && obj.receiptPath != ''" style="height:50px; width:50px;" src="{{obj.receiptPath}}" alt="Alternate Text" />
+                </a>
+            </td>
+            <td>
+                <button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i> Edit</button>
+                <!--<button ng-click="deleteSupplier(obj.supplierID)" type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash-o"></i> Delete</button>-->
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div ng-if="showlist==false" class="form-login" role="form">
+   
+    <div class="form-group col-md-6">
+        
+        <select ng-model="Incoming.customerID" class="form-control">
+            <option selected value="">- Select Customer -</option>
+            <option ng-repeat="cs in ListOfcustomer" value="{{cs.customerID}}" ng-selected="cs.customerID == Incoming.customerID">{{cs.name}}</option>
+        </select>
+
+
+    </div>
+
+    <div class="form-group col-md-6">
+        <label> Source Name</label>
+        <input type="text" class="form-control" placeholder="Name" data-ng-model="Incoming.SourceName" required autofocus>
+    </div>
+
+   
+
+    <div class="form-group col-md-6">
+        <label> Select Project  </label>
+
+        <!--<select class="form-control" data-ng-model="Incoming.ProjectID" data-ng-change="setProjectID(Incoming.ProjectID)">
+            <option selected value="">- Select Project -</option>
+            <option data-ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
+        </select>-->
+
+        <select ng-model="projectid" data-ng-change="setProjectID(projectid)" style="margin-bottom:10px;" class="form-control">
+            <option selected value="">- Select Project -</option>
+            <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
+        </select>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label>Total Amount</label>
+        <input type="number" class="form-control" placeholder="Total Cost" data-ng-model="Incoming.Amount" required>
+    </div>
+
+    <div class="col-md-6 col-md-6">
+        <label>Receipt</label>
+        <div class="dropzone" id="single-file-upload">
+            <div class="fallback">
+                <input type="file" id="fileName" multiple name="fileName" value="" />
+
+                <img ng-if="Incoming.ReceiptPath!=''" alt="Choose Image" id="showUploaded" style="width:89px;height:90px" src="{{Incoming.ReceiptPath}}" />
+
+                <img ng-if="Incoming.ReceiptPath==''" alt="Choose Image" id="showUploaded" style="width:89px;height:90px" src="https://static.thenounproject.com/png/220984-200.png" />
+
+
+
+                <!--<img alt="Choose Image" id="showUploaded" style="width:89px;height:90px" src="{{Incoming.ReceiptPath}}" />-->
+                <button ng-if="isEditing == true" ng-click="removeImage()">Update Image</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6 col-md-6">
+        <button ng-disabled="(projectID == '' || projectID == null) || (Incoming.SourceName == '' || Incoming.SourceName == null)" ng-if="isEditing == false" class="btn btn-primary m-1" type="submit" data-ng-click="saveIncoming()"> <i class="fa fa-check"></i> Save</button>
+        <button ng-disabled="(projectID == '' || projectID == null) || (Incoming.SourceName == '' || Incoming.SourceName == null)" ng-if="isEditing == true" class="btn btn-primary m-1" type="submit" data-ng-click="updateIncoming()"> <i class="fa fa-check"></i> Update</button>
+        <button data-ng-click="showlistofincomings()" type="button" class="btn btn-dark m-1"><i class="fa fa-times"></i> Cancel</button>
+
+    </div>
+
+   
+</div>
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle-2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle-2">Receipt</h5>
+
+            </div>
+            <div class="modal-body">
+                <img src="{{enlargeimage}}" alt="Alternate Text" />
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<form class="form-login" role="form">
+    <h2 class="form-login-heading">Create Incoming</h2>
+    <input type="text" class="form-control" placeholder="Date" data-ng-model="Incoming.Date" required autofocus>
+    <input type="text" class="form-control" placeholder="Amount" data-ng-model="Incoming.Amount" required>
+    <input type="text" class="form-control" placeholder="SourceName" data-ng-model="Incoming.SourceName" required>
+    <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="addIncoming()">Submit</button>
+    <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+        {{message}}
+    </div>
+</form>-->

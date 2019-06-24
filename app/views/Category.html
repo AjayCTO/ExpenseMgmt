@@ -1,0 +1,153 @@
+﻿
+<div class="breadcrumb">
+    <h1>Category Management</h1>
+    <ul>
+        <li><a href="">Dashboard</a></li>
+        <li>Version 1</li>
+    </ul>
+</div>
+
+<div class="separator-breadcrumb border-top"></div>
+
+
+<div ng-if="showlist==true">
+    <!--<div style="text-align:right" class="col-md-4">
+        <select ng-model="projectid" data-ng-change="getCategoryByProjectID(projectid)" style="margin-bottom:10px;" class="form-control">
+            <option selected value="0">- Select Project -</option>
+            <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
+        </select>
+    </div>-->
+
+
+    <div class="row">
+        <div class="col-md-3">
+            <button data-ng-click="addnewcategory()" type="button" class="btn btn-success m-1"> <i class="fa fa-plus"></i> Add Category</button>
+        </div>
+
+        <div style="text-align:center;" class="col-md-6 form-inline">
+            <div class="form-group">
+                <label style="width:auto; margin-right:7px;">Select Project</label>
+                <select ng-model="projectid" data-ng-change="getCategoryByProjectID(projectid)" style="margin-bottom:10px;" class="form-control">
+                    <option selected value="0">- Select Project -</option>
+                    <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div style="text-align:right" class="col-md-3">
+            <input class="form-control" placeholder="Type to Search" type="text" data-ng-model="search" name="name" value="" />
+        </div>
+    </div>
+
+
+    <!--<button data-ng-click="addnewcategory()" type="button" class="btn btn-success m-1"> <i class="fa fa-plus"></i> Add Category</button>-->
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th ng-click="sort('name')">
+                    Category Name
+                    <i class="fa" ng-show="sortKey=='name'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+
+                </th>
+                <th ng-click="sort('description')">
+                    Category Description
+                    <i class="fa" ng-show="sortKey=='description'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+
+                </th> 
+                <th>
+                    Action
+                </th>               
+            </tr>
+        </thead>
+
+        <tr ng-repeat="obj in ListOfCategories |orderBy:sortKey:reverse|filter:search">
+            <td>
+                {{obj.name}}
+            </td>
+
+            <td>
+                {{obj.description}}
+            </td>
+
+
+            <td>
+                <button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i> Edit</button>
+                <!--<button ng-click="deleteCategory(obj.projectID)" type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash-o"></i> Delete</button>-->
+            </td>
+
+
+        </tr>
+    </table>
+</div>
+
+
+<form ng-if="showlist==false" class="form-login" role="form">
+
+
+    <div class="form-group col-md-6">
+        <label>Name </label>
+        <input type="text" class="form-control" placeholder="Name" data-ng-model="Category.name" required autofocus>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label>Description</label>
+        <input type="text" class="form-control" placeholder="Description" data-ng-model="Category.description" required>
+    </div>  
+
+    <div class="form-group col-md-6">
+        <label>Project</label>
+        <!--<select ng-model="projectid" data-ng-change="getCategoryByProjectID(projectid)" style="margin-bottom:10px;" class="form-control">
+            <option selected value="0">- Select Project -</option>
+            <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
+        </select>-->
+
+        <select ng-model="projectid" data-ng-change="setProjectID(projectid)" style="margin-bottom:10px;" class="form-control">
+            <option selected value="">- Select Project -</option>
+            <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
+        </select>
+    </div> 
+   
+
+
+    <div class="form-group col-md-6">
+        <button ng-disabled="(projectID == '' || projectID == null) || (Category.name == '' || Category.name == null)" ng-if="isEditing == false" class="btn btn-primary m-1" type="submit" data-ng-click="saveCategory()"> <i class="fa fa-check"></i> Save</button>
+
+        <button ng-disabled="(projectID == '' || projectID == null) || (Category.name == '' || Category.name == null)" ng-if="isEditing == true" class="btn btn-primary m-1" type="submit" data-ng-click="updateCategory()"> <i class="fa fa-check"></i> Update</button>
+
+        <button data-ng-click="showcategorylist()" type="button" class="btn btn-dark m-1"><i class="fa fa-times"></i> Cancel</button>
+
+    </div>
+
+       
+</form>
+
+<div class="modal fade" id="customermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle-2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle-2">Add Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Type Your Name </label>
+                    <input data-ng-model="Customerobject.Name" type="text" class="form-control" name="name" value="" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button data-ng-click="saveNewCustomer()" data-ng-disabled="Customerobject.Name==''" type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    label {
+        width: 100%;
+    }
+</style>
+
+

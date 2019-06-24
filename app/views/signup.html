@@ -1,0 +1,79 @@
+﻿
+<div  class="auth-layout-wrap">
+    <div class="auth-content">
+        <div style="box-shadow: 10px -1px 26px #888 !important;" class="card o-hidden">
+            <div class="row">
+                <div class="col-md-6 text-center " style="background-size: cover;background-image: url(http://gull-html-laravel.ui-lib.com/assets/images/photo-long-3.jpg)">
+                    <div class="pl-3 auth-right">
+                        <div class="auth-logo text-center mt-4">
+                            <!--<img src="http://gull-html-laravel.ui-lib.com/assets/images/logo.png" alt="">-->
+                            <img src="../../Images/logo-colored.png" />
+                        </div>
+                        <div class="flex-grow-1"></div>
+                        <div class="w-100 mb-4">
+                            <!--<a class="btn btn-outline-primary btn-outline-email btn-block btn-icon-text btn-rounded" href="signin.html">
+                                <i class="i-Mail-with-At-Sign"></i> Sign in with Email
+                            </a>
+                            <a class="btn btn-outline-primary btn-outline-google btn-block btn-icon-text btn-rounded">
+                                <i class="i-Google-Plus"></i> Sign in with Google
+                            </a>
+                            <a class="btn btn-outline-primary btn-outline-facebook btn-block btn-icon-text btn-rounded">
+                                <i class="i-Facebook-2"></i> Sign in with Facebook
+                            </a>-->
+                        </div>
+                        <div class="flex-grow-1"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="p-4">
+
+                        <h1 class="mb-3 text-18">Sign Up</h1>
+                        <form action="">
+                            <div class="form-group">
+                                <label for="username">Your name</label>
+                                <input id="username" type="text" class="form-control" placeholder="Username" data-ng-model="registration.userName" required autofocus>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input id="password" type="password" class="form-control" placeholder="Password" data-ng-model="registration.password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="repassword">Retype password</label>
+                                <input id="repassword" type="password" class="form-control" placeholder="Confirm Password" data-ng-model="registration.confirmPassword" required>
+                            </div>
+                            <button data-ng-click="signUp()" class="btn btn-primary btn-block btn-rounded mt-3">Sign Up</button>
+                        </form>
+                        <div style="align-content:center">
+                            <a href="#/login">Already Have Account?</a>
+                        </div>
+                       
+                    </div>
+
+                  
+                </div>
+            </div>
+
+            <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                {{message}}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .main-header, .navigation-left {
+        display: none !important;
+    }
+
+    .main-content-wrap.sidenav-open {
+        margin-top: 0;
+        width: 100%;
+    }
+
+    .main-content-wrap {
+        padding: 0 !important;
+    }
+</style>

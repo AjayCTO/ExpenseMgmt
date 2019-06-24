@@ -1,0 +1,392 @@
+﻿
+        <div class="breadcrumb">
+            <h1>Dashboard</h1>
+           
+        </div>
+
+        <div class="separator-breadcrumb border-top"></div>
+
+
+
+        <div style="display:none;" class="row">
+            <!-- ICON BG -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                    <div class="card-body text-center">
+                        <i class="fa fa-user"></i>
+                        <div class="content">
+                            <p class="text-muted mt-2 mb-0">Projects</p>
+                            <p class="text-primary text-24 line-height-1 mb-2">{{ListOfProjects.length}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                    <div class="card-body text-center">
+                        <i class="fa fa-calendar"></i>
+                        <div class="content">
+                            <p class="text-muted mt-2 mb-0">Suppliers</p>
+                            <p class="text-primary text-24 line-height-1 mb-2">25</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                    <div class="card-body text-center">
+                        <i class="fa fa-shopping-cart"></i>
+                        <div class="content">
+                            <p class="text-muted mt-2 mb-0">Customers</p>
+                            <p class="text-primary text-24 line-height-1 mb-2">80</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                    <div class="card-body text-center">
+                        <i class="fa fa-money"></i>
+                        <div class="content">
+                            <p class="text-muted mt-2 mb-0">Assets</p>
+                            <p class="text-primary text-24 line-height-1 mb-2">13</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+<div class="summarysection card">
+
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-8">
+                <h4 style="margin-top:8px;">Expenses summary</h4>
+            </div>
+
+            <div style="text-align:right" class="col-md-4">
+                <select ng-model="projectid" data-ng-change="getTransactionByID(projectid)" style="margin-bottom:10px;" class="form-control">
+                    <option selected value="0">- Select Project -</option>
+                    <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card-body">
+        
+
+        <h4>
+            <b>{{Projectname}}</b>
+        </h4>
+      
+
+        <div class="row">
+            <div class="col-md-2">
+                <div class="card card-icon mb-4">
+                    <div class="card-body text-center">
+                        <i class="fa fa-money"></i>
+                        <p class="text-muted mt-2 mb-2">Project cost</p>
+                        <p class="lead text-22 m-0">&#x20b9; {{totalcost}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card card-icon mb-4">
+                    <div class="card-body text-center">
+                        <i class="fa fa-th"></i>
+                        <p class="text-muted mt-2 mb-2">Total Incoming</p>
+                        <p class="lead text-22 m-0">  &#x20b9; {{totalincoming}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card card-icon mb-4">
+                    <div class="card-body text-center">
+                        <i class="fa fa-th"></i>
+                        <p class="text-muted mt-2 mb-2">Remain Incoming</p>
+                        <p class="lead text-22 m-0"> &#x20b9; {{totalcost - totalincoming}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div ng-class="{'bg-danger': totalcost - totalexpense < 0}" class="card card-icon mb-4">
+                    <div class="card-body text-center">
+                        <i class="fa fa-exchange"></i>
+                        <p class="text-muted mt-2 mb-2">Total Expenses</p>
+                        <p class="lead text-22 m-0">   &#x20b9;  {{totalexpense}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div ng-class="{'bg-danger': totalcost - totalexpense < 0}" class="card card-icon mb-4">
+                    <div class="card-body text-center">
+                        <i class="fa fa-calendar"></i>
+                        <p class="text-muted mt-2 mb-2">Remaining Expenses</p>
+                        <p class="lead text-22 m-0">   &#x20b9;  {{totalcost - totalexpense}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+
+                    <div style="padding:17px;" class="badge-primary card-header">
+                        <h4 style="margin-bottom:0; color:#fff;" class="card-title">Last 5 Expenses</h4>
+                    </div>
+
+                    <div style="min-height:328px;" class="card-body">
+
+                        <div class="d-flex flex-column flex-sm-row align-items-center mb-3" ng-repeat="obj in ListOfExpenses">
+                            <a ng-click="makezoom(obj.receiptPath)"> 
+                             <img style="cursor:pointer;width: 50px; height: 50px; border: 1px solid #ccc; border-radius: 100% !important;" ng-if="obj.receiptPath!=''" class="avatar-lg mb-3 mb-sm-0 rounded mr-sm-3" src="{{obj.receiptPath}}" alt="">
+                            </a>
+                            <a>
+                                <img ng-if="obj.receiptPath==''" style="width: 50px; height: 50px; border: 1px solid #ccc; border-radius: 100% !important;" src="https://static.thenounproject.com/png/220984-200.png" class="avatar-lg mb-3 mb-sm-0 rounded mr-sm-3" alt="Alternate Text" />
+
+                            </a>
+
+                            <div class="flex-grow-1">
+                                <h5 class=""><a href="">{{obj.description}}</a></h5>
+                                <h5 class=""><a href="">{{obj.projectName}}</a></h5>
+                                <p class="text-small text-danger m-0">&#x20b9;{{obj.totalAmount}}</p>
+                            </div>
+                            <div>
+                                <a ng-click="openExpensePage(obj.totalAmount)">
+                                    <button class="btn btn-outline-primary btn-rounded btn-sm">View details</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+
+                    <div style="padding:17px;" class="badge-primary card-header">
+                        <h4 style="margin-bottom:0; color:#fff;" class="card-title">Last 5 Incoming</h4>
+                    </div>
+
+                    <div style="min-height:328px;" class="card-body">
+                       
+                        <div class="d-flex flex-column flex-sm-row align-items-center mb-3" ng-repeat="obj in ListOfIncomings">
+                                <a ng-click="makezoom(obj.receiptPath)">
+                                <img style="width: 50px; height: 50px; border: 1px solid #ccc; border-radius: 100% !important;" ng-if="obj.receiptPath !=''" class="avatar-lg mb-3 mb-sm-0 rounded mr-sm-3" src="{{obj.receiptPath}}" alt="">
+                                </a>
+                                <a>
+                                    <img ng-if="obj.receiptPath == '' || obj.receiptPath == null || obj.receiptPath == undefined" style="width: 50px; height: 50px; border: 1px solid #ccc; border-radius: 100% !important;" src="https://static.thenounproject.com/png/220984-200.png" class="avatar-lg mb-3 mb-sm-0 rounded mr-sm-3" alt="Alternate Text" />
+
+                                </a>
+                            <div class="flex-grow-1">
+                                <h5 class=""><a href="">{{obj.sourceName}}</a></h5>
+                                <p class="m-0 text-small text-muted">{{obj.description}}</p>
+                                <p class="text-small text-danger m-0">&#x20b9;{{obj.amount}} </p>
+                            </div>
+                                <div>
+                                    <a ng-click="openIncomingPage(obj.sourceName)" >
+                                        <button class="btn btn-outline-primary btn-rounded btn-sm">View details</button>
+                                    </a>
+                                </div>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        
+
+
+        <!--<div class="table-responsive">
+
+
+            <table style="overflow:hidden" class="summarytable table">
+                <thead>
+                    <tr>
+                        <th> Name</th>
+                        <th>Cost</th>
+                        <th>Total Incoming</th>
+                        <th>Remaining Incoming</th>
+                        <th>Total Expenses</th>
+                        <th>Remaining Expenses</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>
+                           
+
+
+                        </td>
+                        <td>
+                            <span class="badge badge-success">
+                                {{totalcost}}
+                            </span>
+
+                        </td>
+                        <td>
+                            <span class="badge badge-warning">
+                                {{totalincoming}}
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge badge-warning">
+                                {{totalcost - totalincoming}}
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <span class="badge badge-danger">
+                                {{totalexpense}}
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <span class="badge badge-danger">
+                                {{totalcost - totalexpense}}
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr class="expensesrow">
+                        <td colspan="6">
+
+                            <p style="margin-bottom:12px; font-weight:700;">ASSET DETAILS</p>
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <a ng-repeat="obj in ListOfAssets" class="btn btn-outline-primary btn-sm btn-rounded m-3 m-sm-0">{{obj.name}} <span>{{obj.totalAmount}}</span> </a>
+                                   
+                                </div>
+
+                            </div>
+
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>-->
+    </div>
+</div>
+
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle-2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle-2">Receipt</h5>
+
+            </div>
+            <div class="modal-body">
+                <img src="{{enlargeimage}}" alt="Alternate Text" />
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+
+
+
+
+
+<style>
+    /*.badge {
+        font-size: 16px;
+        padding: 12px;
+        padding-left: 23px;
+        padding-right: 23px;
+      
+    }*/
+
+    .bg-danger i
+    {
+        color:#fff !important;
+    }
+
+    .bg-danger p {
+        color: #fff !important;
+    }
+
+    .expensesrow td
+    {
+      border-top:transparent;
+    }
+
+    .summarytable tr td
+    {
+        padding-top:12px;
+        padding-bottom:5px;
+    }
+
+    .summarytable tbody {
+        background-color: #efefef;
+    }
+    
+    
+    
+      .summarytable tr td p {
+        margin-bottom: 0;
+    }
+
+    .btn-primary
+    {
+        color:#fff !important;
+      
+    }
+
+    .summarytable .btn-sm {
+        padding: 9px;
+        min-width: 94px;
+        margin-bottom: 12px !important;
+        font-size: 12px;
+    }
+
+    .btn-sm:hover
+    {
+        color:#fff !important;
+    }
+
+    .summarysection i
+    {
+        font-size:25px;
+    }
+
+    h5 {
+        font-size: 15px;
+        margin-bottom: 1px;
+    }
+    
+    
+</style>
+
+
+
+        
+
+        
+
+
