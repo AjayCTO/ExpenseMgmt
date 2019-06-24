@@ -24,6 +24,7 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
          });
     };
 
+   
     $scope.authExternalProvider = function (provider) {
 
         var redirectUri = location.protocol + '//' + location.host + '/authcomplete.html';

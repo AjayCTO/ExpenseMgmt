@@ -1,6 +1,12 @@
 ﻿'use strict';
 app.controller('CustomerController', ['$scope', 'ordersService', 'localStorageService', function ($scope, ordersService, localStorageService) {
 
+    function init() {
+        $(".menu-toggle").trigger("click");
+    }
+
+
+    init();
     $scope.userName = localStorageService.get('authorizationData').userName;
 
     $scope.projectID = localStorageService.get('projectID').projectID;

@@ -2,7 +2,7 @@
 app.controller('projectController', ['$scope', 'ordersService', 'localStorageService', function ($scope, ordersService, localStorageService) {
 
     $scope.userName = localStorageService.get('authorizationData').userName;
-
+ 
     localStorageService.remove('searchExpense');
     localStorageService.remove('searchIncoming');
 

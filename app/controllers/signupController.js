@@ -10,6 +10,7 @@ app.controller('signupController', ['$scope', '$location', '$timeout', 'authServ
         confirmPassword: ""
     };
 
+
     $scope.signUp = function () {
 
         authService.saveRegistration($scope.registration).then(function (response) {
