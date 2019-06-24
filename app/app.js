@@ -55,12 +55,12 @@ app.config(function ($routeProvider) {
 
     $routeProvider.when("/expense", {
         controller: "ExpenseController",
-        templateUrl: "./app/views/expense.html"
+        templateUrl: "./app/views/Expense.html"
     });
 
     $routeProvider.when("/incoming", {
         controller: "incomingController",
-        templateUrl: "./app/views/incoming.html"
+        templateUrl: "./app/views/Incoming.html"
     });
 
     $routeProvider.when("/supplier", {
