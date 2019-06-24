@@ -15,6 +15,12 @@ app.controller('homeController', ['$scope', 'ordersService', 'localStorageServic
     $scope.userName = localStorageService.get('authorizationData').userName;
     
 
+    function init() {
+        $(".menu-toggle").trigger("click");
+    }
+
+
+    init();
     //$scope.Projectname = "My Project";
     //$scope.totalcost = 1255;
     //$scope.totalexpense = 1000;

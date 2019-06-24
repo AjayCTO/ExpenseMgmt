@@ -10,7 +10,13 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
     if (localStorageService.get('projectID') != null && localStorageService.get('projectID') != '' && localStorageService.get('projectID') != undefined) {
         $scope.projectID = localStorageService.get('projectID').projectID;
     }
-   
+
+    function init() {
+        $(".menu-toggle").trigger("click");
+    }
+
+
+    init();
 
     $scope.Supplier = {
         SupplierID:"",

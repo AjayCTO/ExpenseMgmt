@@ -8,6 +8,12 @@ app.controller('ReportsController', ['$scope', '$rootScope', 'ordersService', 'l
     }
 
 
+    function init() {
+        $(".menu-toggle").trigger("click");
+    }
+
+
+    init();
 
     $scope.showlist = true;
 

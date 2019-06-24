@@ -20,6 +20,12 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
 
 
 
+    function init() {
+        $(".menu-toggle").trigger("click");
+    }
+
+
+    init();
 
 
 

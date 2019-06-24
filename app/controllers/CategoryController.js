@@ -1,6 +1,12 @@
 ﻿'use strict';
 app.controller('CategoryController', ['$scope', 'ordersService', 'localStorageService', function ($scope, ordersService, localStorageService) {
 
+    function init() {
+        $(".menu-toggle").trigger("click");
+    }
+
+
+    init();
     $scope.userName = localStorageService.get('authorizationData').userName;
 
     localStorageService.remove('searchExpense');

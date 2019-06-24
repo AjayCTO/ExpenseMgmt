@@ -1,6 +1,10 @@
 ﻿'use strict';
 app.controller('associateController', ['$scope', '$location','$timeout','authService', function ($scope, $location,$timeout, authService) {
-
+    init();
+    function init() {
+        $(".menu-toggle").trigger("click");
+    }
+   
     $scope.savedSuccessfully = false;
     $scope.message = "";
 
