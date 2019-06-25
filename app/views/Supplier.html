@@ -40,72 +40,73 @@
     </div>
 
 
+    <div style="overflow-x:scroll">
+        <!--<button data-ng-click="addnewsupplier()" type="button" class="btn btn-success m-1"> <i class="fa fa-plus"></i> Add Supplier</button>-->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th ng-click="sort('name')">
+                        Supplier Name
+                        <i class="fa" ng-show="sortKey=='name'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
 
-    <!--<button data-ng-click="addnewsupplier()" type="button" class="btn btn-success m-1"> <i class="fa fa-plus"></i> Add Supplier</button>-->
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th ng-click="sort('name')">
-                    Supplier Name
-                    <i class="fa" ng-show="sortKey=='name'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+                    </th>
+                    <th ng-click="sort('address')">
+                        Supplier Address
+                        <i class="fa" ng-show="sortKey=='address'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
 
-                </th>
-                <th ng-click="sort('address')">
-                    Supplier Address
-                    <i class="fa" ng-show="sortKey=='address'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+                    </th>
+                    <th ng-click="sort('contact')">
+                        Supplier Contact
+                        <i class="fa" ng-show="sortKey=='contact'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
 
-                </th>
-                <th ng-click="sort('contact')">
-                    Supplier Contact
-                    <i class="fa" ng-show="sortKey=='contact'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+                    </th>
+                    <th ng-click="sort('totalAmount')">
+                        Supplier Total Amount
+                        <i class="fa" ng-show="sortKey=='totalAmount'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
 
-                </th>
-                <th ng-click="sort('totalAmount')">
-                    Supplier Total Amount
-                    <i class="fa" ng-show="sortKey=='totalAmount'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+                    </th>
+                    <th ng-click="sort('amountPaid')">
+                        Supplier Amount Paid
+                        <i class="fa" ng-show="sortKey=='amountPaid'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
 
-                </th>
-                <th ng-click="sort('amountPaid')">
-                    Supplier Amount Paid
-                    <i class="fa" ng-show="sortKey=='amountPaid'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+                    </th>
+                    <th>
+                        Amount Due
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
 
-                </th>
-                <th>
-                    Amount Due
-                </th>
-                <th>
-                    Action
-                </th>
+            <tr ng-repeat="obj in ListOfSupplier|orderBy:sortKey:reverse|filter:search">
+                <td>
+                    {{obj.name}}
+                </td>
+                <td>
+                    {{obj.address}}
+                </td>
+                <td>
+                    {{obj.contact}}
+                </td>
+                <td>
+                    {{obj.totalAmount}}
+                </td>
+                <td>
+                    {{obj.amountPaid}}
+                </td>
+                <td>
+                    {{obj.totalAmount - obj.amountPaid}}
+                </td>
+                <td>
+                    <button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i> Edit</button>
+                    <!--<button ng-click="customMethod(obj)" type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i> Custom</button>-->
+                    <!--<button ng-click="deleteSupplier(obj.supplierID)" type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash-o"></i> Delete</button>-->
+                </td>
             </tr>
-        </thead>
-
-        <tr ng-repeat="obj in ListOfSupplier|orderBy:sortKey:reverse|filter:search">
-            <td>
-                {{obj.name}}
-            </td>
-            <td>
-                {{obj.address}}
-            </td>
-            <td>
-                {{obj.contact}}
-            </td>
-            <td>
-                {{obj.totalAmount}}
-            </td>
-            <td>
-                {{obj.amountPaid}}
-            </td>
-            <td>
-                {{obj.totalAmount - obj.amountPaid}}
-            </td>
-            <td>
-                <button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i> Edit</button>
-                <!--<button ng-click="customMethod(obj)" type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i> Custom</button>-->
-                <!--<button ng-click="deleteSupplier(obj.supplierID)" type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash-o"></i> Delete</button>-->
-            </td>
-        </tr>
-    </table>
-</div>
+        </table>
+        </div>
+    </div>
 
 
 <form ng-if="showlist==false" class="form-login" role="form">
