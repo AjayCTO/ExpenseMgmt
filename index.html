@@ -193,6 +193,7 @@
                         <img src="https://image.flaticon.com/icons/png/128/149/149071.png" alt="">
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown" style=" top: 16px!important; left: 0px!important">
+                            <span class="dropdown-item" ng-if="authentication.isAuth"><i class="fa fa-user"></i> <b>Hello {{authentication.userName}}</b> </span>
 
                             <a class="dropdown-item" href="#" ng-click="logOut()"><i class="fa fa-sign-out"></i> <b>Logout</b></a>
                         </div>
