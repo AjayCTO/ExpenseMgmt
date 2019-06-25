@@ -192,10 +192,9 @@
                     <div class="user col align-self-end" id="userDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="https://image.flaticon.com/icons/png/128/149/149071.png" alt="">
 
-                        <span ng-if="authentication.isAuth">Hello {{authentication.userName}}</span>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown" style=" top: 16px!important; left: 0px!important">
 
-                            <a class="dropdown-item" href="#" ng-click="logOut()">Sign out</a>
+                            <a class="dropdown-item" href="#" ng-click="logOut()"><i class="fa fa-sign-out"></i> <b>Logout</b></a>
                         </div>
                     </div>
                 </div>
