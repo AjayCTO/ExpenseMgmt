@@ -108,41 +108,39 @@
         </tr>
     </table>-->
 
-
-
     <div class="col-md-12" ng-repeat="obj in ListOfProjects|orderBy:sortKey:reverse|filter:search">
-       
-            <div class="row">
-                <div class="col-3 col-3 text-center">
-                    <div style="background-color: #281a6f; color: white; font-size: 36px; ">
-                        <span>{{obj.name|uppercase|limitTo:1}}</span>
 
-                    </div>
-                   
-                </div>
-                <div class="col-8 col-md-9">
-                     <h4>
-                        <b>{{obj.name}}</b>
-                    </h4>
-                    <p class="lead text-17 m-0" style="color:red">&#x20b9; {{obj.totalCost}}</p>
+        <div class="row">
+            <div class="col-3 col-md-3 text-center">
 
-                    <span>
-                        <b> Billing Method </b>  {{obj.billingMethod}}
-                    </span>
-
-
-                </div>
-                <div class="col-1 col-md-1" >
-                    <button ng-click=" openeditmodal(obj)" style=" width: 35px; height: 35px; border: 1px solid; position: absolute; background-color: black; color:white; border-radius: 100% !important; right: 0px;" type="button" class="btn btn-primary btn-sm m-1">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-
-
-                </div>
+                <img style="height: 50px; width: 50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" />
+                <!--<a data-ng-click="makezoom(obj.receiptPath)">
+                    <img ng-if="obj.receiptPath!=''" src="{{obj.receiptPath}}" alt="Alternate Text" style="width: 50px; height: 50px;  border: 1px solid #ccc; border-radius: 100% !important;" />
+                </a>-->
+                <!--<img src="https://image.flaticon.com/icons/png/128/149/149071.png" alt="" class="img-rounded img-responsive">-->
             </div>
-            <hr />
+            <div class="col-9 col-md-9 section-box">
+                <button ng-click="openEditModal(obj)" style=" width: 35px; height: 35px; border: 1px solid gray; position: absolute; background-color: gray; border-radius: 100% !important; right: 0px;" type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i></button>
 
+                <h5>
+                    <b>{{obj.name}}</b><a href="" target="_blank">
+                        <span class="glyphicon glyphicon-new-window">
+                        </span>
+                    </a>
+                </h5>
+                <p class="lead text-17 m-0" style="color:red">&#x20b9; {{obj.totalCost}}</p>
+
+                <span>
+                    <b> Billing Method </b>  {{obj.billingMethod}}
+                </span>
+
+
+
+            </div>
         </div>
+        <hr />
+    </div>
+
     
 </div>
 
