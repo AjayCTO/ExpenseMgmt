@@ -20,14 +20,6 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
 
 
 
-    function init() {
-        $(".menu-toggle").trigger("click");
-    }
-
-
-    init();
-
-
 
     $scope.getcustomeragain = function () {
         ordersService.getCustomer($scope.userName).then(function (results) {

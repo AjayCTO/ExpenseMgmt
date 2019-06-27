@@ -56,13 +56,6 @@ app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageServ
       
     }
 
-
-    function init() {
-        $(".menu-toggle").trigger("click");
-    }
-
-
-    init();
     $scope.getAssetsByProjectID = function (id) {
 
         $scope.projectID = id;

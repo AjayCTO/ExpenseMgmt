@@ -9,12 +9,6 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
 
 
-    function init() {
-        $(".menu-toggle").trigger("click");
-    }
-
-
-    init();
 
   
     $scope.showlist = true;
@@ -443,11 +437,12 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
     
 
     $scope.saveExpense = function () {
-
+        debugger;
         $scope.Expense.ProjectID = $scope.projectID;
             
 
         ordersService.saveExpense($scope.Expense, $scope.userName).then(function (response) {
+            debugger;
             $scope.savedSuccessfully = true;
             $scope.message = "Expense has been added successfully";
             $scope.getExpenseByProjectID($scope.projectID);
@@ -470,7 +465,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
 
     $scope.updateExpense = function () {
-
+        debugger;
         $scope.Expense.ProjectID = $scope.projectID;
 
         ordersService.updateExpense($scope.Expense, $scope.userName).then(function (response) {
@@ -524,7 +519,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
 
     $(document.body).on('change', '#fileName', function () {
-     
+        debugger;
         var files = event.target.files; //FileList object
         var output = document.getElementById("result");
 

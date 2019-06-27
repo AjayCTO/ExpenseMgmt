@@ -11,12 +11,7 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
         $scope.projectID = localStorageService.get('projectID').projectID;
     }
 
-    function init() {
-        $(".menu-toggle").trigger("click");
-    }
 
-
-    init();
 
     $scope.Supplier = {
         SupplierID:"",

@@ -1,12 +1,7 @@
 ﻿'use strict';
 app.controller('ManufacturerController', ['$scope', 'ordersService', function ($scope, ordersService) {
 
-    function init() {
-        $(".menu-toggle").trigger("click");
-    }
-
-
-    init();
+  
 
     $scope.Manufacturer = {
         ManufacturerID:"",

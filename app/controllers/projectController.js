@@ -15,12 +15,7 @@ app.controller('projectController', ['$scope', 'ordersService', 'localStorageSer
     };
 
 
-    function init() {
-        $(".menu-toggle").trigger("click");
-    }
-
-
-    init();
+ 
     $scope.Customerobject = {
 
         Name: "",
