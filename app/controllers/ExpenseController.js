@@ -232,13 +232,13 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
             $("#categorymodal").modal("hide");
 
-            debugger;
+    
 
             $scope.getcategoryagain()
 
             setTimeout(function () {
 
-                debugger;
+            
 
                 $scope.Expense.CategoryID = response.data.categoryID;
                 $scope.$apply();
@@ -267,13 +267,13 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
             $("#assetmodal").modal("hide");
 
-            debugger;
+       
 
             $scope.getassetsagain();
 
             setTimeout(function () {
 
-                debugger;
+            
 
                 $scope.Expense.AssetID = response.data.assetID;
                 $scope.$apply();
@@ -304,13 +304,13 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
             $("#suppliermodal").modal("hide");
 
-            debugger;
+    
 
             $scope.getsupplieragain();
 
             setTimeout(function () {
 
-                debugger;
+          
 
                 $scope.Expense.SupplierID = response.data.supplierID;
                 $scope.$apply();
@@ -437,12 +437,12 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
     
 
     $scope.saveExpense = function () {
-        debugger;
+      
         $scope.Expense.ProjectID = $scope.projectID;
             
 
         ordersService.saveExpense($scope.Expense, $scope.userName).then(function (response) {
-            debugger;
+   
             $scope.savedSuccessfully = true;
             $scope.message = "Expense has been added successfully";
             $scope.getExpenseByProjectID($scope.projectID);
@@ -465,7 +465,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
 
     $scope.updateExpense = function () {
-        debugger;
+      
         $scope.Expense.ProjectID = $scope.projectID;
 
         ordersService.updateExpense($scope.Expense, $scope.userName).then(function (response) {
@@ -519,7 +519,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
 
     $(document.body).on('change', '#fileName', function () {
-        debugger;
+   
         var files = event.target.files; //FileList object
         var output = document.getElementById("result");
 

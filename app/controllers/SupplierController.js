@@ -65,7 +65,7 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
         ordersService.getCategoryByID(id).then(function (results) {
             $scope.categories = results.data;
         }, function (error) {
-            debugger;
+     
             //alert(error.data.message);
         });
     }

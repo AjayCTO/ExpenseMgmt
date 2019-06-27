@@ -16,7 +16,7 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
             console.log("==================Login Controller=====================")
             console.log(response)
             console.log("==================Login Controller=====================")
-            $location.path('/home');
+            $location.path('/project');
 
         },
          function (err) {

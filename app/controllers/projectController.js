@@ -86,13 +86,11 @@ app.controller('projectController', ['$scope', 'ordersService', 'localStorageSer
 
             $("#customermodal").modal("hide");
 
-            debugger;
+        
 
             $scope.getcustomeragain();
 
             setTimeout(function () {
-
-                debugger;
 
                 $scope.project.customerID = response.data.customerID;
                 $scope.$apply();
@@ -117,7 +115,7 @@ app.controller('projectController', ['$scope', 'ordersService', 'localStorageSer
     $scope.getcustomeragain = function () {
         ordersService.getCustomer($scope.userName).then(function (results) {
 
-            debugger;
+     
             $scope.ListOfcustomer = results.data;
 
         }, function (error) {

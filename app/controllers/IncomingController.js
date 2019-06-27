@@ -24,7 +24,7 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
     $scope.getcustomeragain = function () {
         ordersService.getCustomer($scope.userName).then(function (results) {
 
-            debugger;
+        
             $scope.ListOfcustomer = results.data;
 
         }, function (error) {

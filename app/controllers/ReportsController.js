@@ -300,13 +300,13 @@ app.controller('ReportsController', ['$scope', '$rootScope', 'ordersService', 'l
 
             $("#categorymodal").modal("hide");
 
-            debugger;
+
 
             $scope.getcategoryagain()
 
             setTimeout(function () {
 
-                debugger;
+               
 
                 $scope.Expense.CategoryID = response.data.categoryID;
                 $scope.$apply();
@@ -335,13 +335,13 @@ app.controller('ReportsController', ['$scope', '$rootScope', 'ordersService', 'l
 
             $("#assetmodal").modal("hide");
 
-            debugger;
 
+    
             $scope.getassetsagain();
 
             setTimeout(function () {
 
-                debugger;
+           
 
                 $scope.Expense.AssetID = response.data.assetID;
                 $scope.$apply();
@@ -372,13 +372,13 @@ app.controller('ReportsController', ['$scope', '$rootScope', 'ordersService', 'l
 
             $("#suppliermodal").modal("hide");
 
-            debugger;
+
 
             $scope.getsupplieragain();
 
             setTimeout(function () {
 
-                debugger;
+          
 
                 $scope.Expense.SupplierID = response.data.supplierID;
                 $scope.$apply();

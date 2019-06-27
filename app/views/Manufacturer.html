@@ -3,8 +3,8 @@
 <div class="breadcrumb">
     <h1>Manufacturer Management</h1>
     <ul>
-        <li><a href="">Dashboard</a></li>
-        <li>Version 1</li>
+        <li><a href="#/home">Dashboard</a></li>
+        <li>Manufacturer</li>
     </ul>
 </div>
 
@@ -13,53 +13,51 @@
 
 <div ng-if="showlist==true">
     <button data-ng-click="addnewproject()" type="button" class="btn btn-success m-1"> <i class="fa fa-plus"></i> Add Project</button>
-    <div style="overflow-x:scroll">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>
-                        Manufacturer Name
-                    </th>
-                    <th>
-                        Manufacturer Address
-                    </th>
-                    <th>
-                        Manufacturer Contact
-                    </th>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Manufacturer Name
+                </th>
+                <th>
+                    Manufacturer Address
+                </th>
+                <th>
+                    Manufacturer Contact
+                </th>
 
-                    <th>
-                        Manufacturer Category
-                    </th>
-                </tr>
-            </thead>
-
-            <tr ng-repeat="obj in ListOfOrders">
-                <td>
-                    {{obj.Name}}
-                </td>
-
-                <td>
-                    {{obj.Address}}
-                </td>
-
-                <td>
-                    {{obj.Contact}}
-                </td>
-                <td>
-                    {{obj.Category}}
-                </td>
-
-                <td>
-                    <button type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i> Edit</button>
-                    <button ng-click="deleteManufacturer(obj.ManufacturerID)" type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash-o"></i> Delete</button>
-
-                </td>
-
-
+                <th>
+                    Manufacturer Category
+                </th>
             </tr>
-        </table>
-        </div>
-    </div>
+        </thead>
+
+        <tr ng-repeat="obj in ListOfOrders">
+            <td>
+                {{obj.Name}}
+            </td>
+
+            <td>
+                {{obj.Address}}
+            </td>
+
+            <td>
+                {{obj.Contact}}
+            </td>
+            <td>
+                {{obj.Category}}
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i> Edit</button>
+                <button ng-click="deleteManufacturer(obj.ManufacturerID)" type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash-o"></i> Delete</button>
+
+            </td>
+
+
+        </tr>
+    </table>
+</div>
 
 
 <form ng-if="showlist==false" class="form-login" role="form">
