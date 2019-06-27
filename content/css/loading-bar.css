@@ -66,8 +66,8 @@
   display: block;
   position: fixed;
   z-index: 100;
-  top: 50%;
-  left: 50%;
+  top: 47%;
+  left: 45%;
 }
 
 #loading-bar-spinner .spinner-icon {
