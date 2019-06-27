@@ -16,6 +16,10 @@
 </style>
 <div class="breadcrumb">
     <h1>Project Management</h1>  
+    <ul>
+        <li><a href="#/home">Dashboard</a></li>
+        <li>Projects</li>
+    </ul>
 </div>
 
 <div class="separator-breadcrumb border-top"></div>
@@ -60,7 +64,7 @@
     </div>
 
 
-    <hr />
+    <div class="separator-breadcrumb border-top"></div>
 
     <!--<table class="table table-bordered">
         <thead>
@@ -120,15 +124,15 @@
                 <!--<img src="https://image.flaticon.com/icons/png/128/149/149071.png" alt="" class="img-rounded img-responsive">-->
             </div>
             <div class="col-9 col-md-9 section-box">
-                <button ng-click="openEditModal(obj)" style=" width: 35px; height: 35px; border: 1px solid gray; position: absolute; background-color: gray; border-radius: 100% !important; right: 0px;" type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i></button>
+                <button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1 EditBUtton"><i class="fa fa-pencil"></i></button>
 
                 <h5>
-                    <b>{{obj.name}}</b><a href="" target="_blank">
+                    <strong><b>{{obj.name}}</b></strong><a href="" target="_blank">
                         <span class="glyphicon glyphicon-new-window">
                         </span>
                     </a>
                 </h5>
-                <p class="lead text-17 m-0" style="color:red">&#x20b9; {{obj.totalCost}}</p>
+                <p class="lead text-15 m-0">&#x20b9; {{obj.totalCost}}</p>
 
                 <span>
                     <b> Billing Method </b>  {{obj.billingMethod}}

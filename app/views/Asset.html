@@ -2,12 +2,19 @@
 <div class="breadcrumb">
     <h1>Asset Management</h1>
     <ul>
-        <li><a href="">Dashboard</a></li>
+        <li><a href="#/home">Dashboard</a></li>
+        <li>Assests</li>
     </ul>
 </div>
 
 <div class="separator-breadcrumb border-top"></div>
 
+<nav class="float-action-button" ng-if="showlist==true">
+
+    <a href="" data-ng-click="addnewasset()" class="buttons" title="Add" data-toggle="tooltip" data-placement="left">
+        <i class="fa fa-plus"></i>
+    </a>
+</nav>
 
 
 <div ng-if="showlist==true">
@@ -18,79 +25,137 @@
             <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
         </select>
     </div>-->
-
     <div class="row">
-        <div class="col-md-3">
-            <button data-ng-click="addnewasset()" type="button" class="btn btn-success m-1"> <i class="fa fa-plus"></i> Add Asset</button>
-        </div>
 
-        <div style="text-align:center;" class="col-md-6 form-inline">
+        <div style="text-align:center;" class="col-md-12">
             <div class="form-group">
-                <label style="width:auto; margin-right:7px;">Select Project</label>
-                <select ng-model="projectid" data-ng-change="getAssetsByProjectID(projectid)" style="margin-bottom:10px;" class="form-control">
-                    <option selected value="0">- Select Project -</option>
+                <h4>Select Project</h4>
+                <select ng-model="projectid" data-ng-change="getAssetsByProjectID(projectid)" style="margin-bottom:25px;" class="form-control">                
                     <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
                 </select>
             </div>
 
+
         </div>
 
-        <div style="text-align:right" class="col-md-3">
-            <input class="form-control" placeholder="Type to Search" type="text" data-ng-model="search" name="name" value="" />
+
+
+
+
+
+
+
+
+
+
+        <div style="text-align:right" class="col-md-12">
+            <div>
+                <div class="input-group">
+                    <input type="text" class="search-query form-control" placeholder="Type to Search" data-ng-model="search" name="name" value="" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-danger" type="button">
+                            <span><i class="fa fa-search"></i></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+
+            <!--<input class="form-control" placeholder="Type to Search" type="text" data-ng-model="search" name="name" value="" />-->
+        </div>
+
+    
+</div>
+
+    <div class="separator-breadcrumb border-top"></div>
+          
+
+            <!--<div style="text-align:right" class="col-md-3">
+                <input class="form-control" placeholder="Type to Search" type="text" data-ng-model="search" name="name" value="" />
+            </div>-->
+     
+
+
+
+        <!--<button data-ng-click="addnewasset()" type="button" class="btn btn-success m-1"> <i class="fa fa-plus"></i> Add Asset</button>-->
+        <!--<table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th ng-click="sort('name')">
+                        Name
+                        <i class="fa" ng-show="sortKey=='name'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+
+                    </th>
+                    <th ng-click="sort('contact')">
+                        Contact
+                        <i class="fa" ng-show="sortKey=='contact'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+
+                    </th>
+                    <th ng-click="sort('address')">
+                        Address
+                        <i class="fa" ng-show="sortKey=='address'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+
+                    </th>
+
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+
+            <tr ng-repeat="obj in ListOfAssets|orderBy:sortKey:reverse|filter:search">
+                <td>
+                    {{obj.name}}
+                </td>
+
+                <td>
+                    {{obj.contact}}
+                </td>
+
+                <td>
+                    {{obj.address}}
+                </td>
+
+                <td>
+                    <button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i> Edit</button>-->
+        <!--<button ng-click="deleteAsset(obj.assetID)" type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash-o"></i> Delete</button>-->
+        <!--</td>
+
+
+            </tr>
+        </table>-->
+        <div class="col-md-12" ng-repeat="obj in ListOfAssets|orderBy:sortKey:reverse|filter:search">
+
+            <div class="row">
+                <div class="col-3 col-md-3 text-center">
+
+                    <img style="height: 50px; width: 50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" />
+                    <!--<a data-ng-click="makezoom(obj.receiptPath)">
+                        <img ng-if="obj.receiptPath!=''" src="{{obj.receiptPath}}" alt="Alternate Text" style="width: 50px; height: 50px;  border: 1px solid #ccc; border-radius: 100% !important;" />
+                    </a>-->
+                    <!--<img src="https://image.flaticon.com/icons/png/128/149/149071.png" alt="" class="img-rounded img-responsive">-->
+                </div>
+                <div class="col-9 col-md-9 section-box">
+                    <button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1 EditBUtton"><i class="fa fa-pencil"></i></button>
+
+                    <h5>
+                        <strong><b>{{obj.name}}</b></strong><a href="" target="_blank">
+                            <span class="glyphicon glyphicon-new-window">
+                            </span>
+                        </a>
+                    </h5>
+                    <span> <strong><b>Address</b></strong> {{obj.address}}</span>
+
+                    <span>
+                        <strong><b>Mob:-</b></strong>{{obj.contact}}
+                    </span>
+
+
+
+                </div>
+            </div>
+            <hr />
         </div>
     </div>
-
-
-
-    <!--<button data-ng-click="addnewasset()" type="button" class="btn btn-success m-1"> <i class="fa fa-plus"></i> Add Asset</button>-->
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th ng-click="sort('name')">
-                    Name
-                    <i class="fa" ng-show="sortKey=='name'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
-
-                </th>
-                <th ng-click="sort('contact')">
-                    Contact
-                    <i class="fa" ng-show="sortKey=='contact'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
-
-                </th>
-                <th ng-click="sort('address')">
-                    Address
-                    <i class="fa" ng-show="sortKey=='address'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
-
-                </th>
-
-                <th>
-                    Action
-                </th>
-            </tr>
-        </thead>
-
-        <tr ng-repeat="obj in ListOfAssets|orderBy:sortKey:reverse|filter:search">
-            <td>
-                {{obj.name}}
-            </td>
-
-            <td>
-                {{obj.contact}}
-            </td>
-
-            <td>
-                {{obj.address}}
-            </td>
-
-            <td>
-                <button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i> Edit</button>
-                <!--<button ng-click="deleteAsset(obj.assetID)" type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash-o"></i> Delete</button>-->
-
-            </td>
-
-
-        </tr>
-    </table>
-</div>
 
 
 <div ng-if="showlist==false">

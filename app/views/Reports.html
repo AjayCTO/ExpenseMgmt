@@ -1,9 +1,14 @@
 ﻿
-
+<nav class="float-action-button" ng-if="showlist==true">
+    <a href="" onclick="DownloadCSV()" value="Download CSV" class="buttons" title="Add">
+        <i class="fa fa-download"></i>
+    </a>
+</nav>
 <div class="breadcrumb">
     <h1>Reports</h1>
     <ul>
         <li><a href="">Dashboard</a></li>
+        <li>Reports</li>
     </ul>
 </div>
 
@@ -16,7 +21,7 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label style="width:auto; margin-right:7px;">Select Project</label>
-                <select ng-model="projectid" data-ng-change="getExpenseByProjectID(projectid)" style="margin-bottom:10px;" class="form-control">
+                <select ng-model="projectid" data-ng-change="getExpenseByProjectID(projectid)" data-style="btn-danger" style="margin-bottom:10px;" class="form-control">
                     <option selected value="0">- Select Project -</option>
                     <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
                 </select>
@@ -40,86 +45,85 @@
                 </select>
             </div>
         </div>
-        <div style="text-align:right" class="col-md-3">
+        <!--<div style="text-align:right" class="col-md-3">
             <div class="form-group">
                 <label>&nbsp;</label>
                 <button class="btn btn-success m-1" type="button" onclick="DownloadCSV()" value="Download CSV"><i class="fa fa-download"></i> Download</button>
             </div>
 
-        </div>
+        </div>-->
      
     </div>
 
 
-    <div style="overflow-x:scroll">
-        <table class="table table-bordered" id="tab">
-            <thead>
-                <tr>
 
-                    <th ng-click="sort('projectName')">
-                        Name
-                        <i class="fa" ng-show="sortKey=='projectName'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
-                    </th>
-
-                    <th ng-click="sort('assetName')">
-                        Assets
-                        <i class="fa" ng-show="sortKey=='assetName'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
-                    </th>
-
-                    <th ng-click="sort('totalAmount')">
-                        Amount
-                        <i class="fa" ng-show="sortKey=='totalAmount'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
-                    </th>
-                    <th class="col1">
-                        Receipt
-                    </th>
-                    <th ng-click="sort('supplierName')">
-                        Supplier Name
-                        <i class="fa" ng-show="sortKey=='supplierName'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
-                    </th>
-
-                    <th ng-click="sort('description')">
-                        Description
-                        <i class="fa" ng-show="sortKey=='description'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
-                    </th>
-                </tr>
-            </thead>
-
-            <tr ng-repeat="obj in ListOfExpenses |orderBy:sortKey:reverse|filter:search">
-                <td>
-                    {{obj.projectName}}
-                </td>
-                <td>
-                    {{obj.assetName}}
-                </td>
-                <td>
-                    {{obj.totalAmount}}
-                </td>
-                <td class="col1">
-                    <img ng-if="obj.receiptPath==''" style="height:50px; width:50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" />
-                    <a data-ng-click="makezoom(obj.receiptPath)">
-                        <img ng-if="obj.receiptPath!=''" style="height:50px; width:50px;" src="{{obj.receiptPath}}" alt="Alternate Text" />
-                    </a>
-                </td>
-                <td>
-                    {{obj.supplierName}}
-                </td>
-                <td>
-                    {{obj.description}}
-                </td>
-            </tr>
-
+    <!--<table class="table table-bordered" id="tab">
+        <thead>
             <tr>
-                <td></td>
-                <td>Total Amount</td>
-                <td style="background-color:aqua">{{total}}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+
+                <th ng-click="sort('projectName')">
+                    Name
+                    <i class="fa" ng-show="sortKey=='projectName'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+                </th>
+
+                <th ng-click="sort('assetName')">
+                    Assets
+                    <i class="fa" ng-show="sortKey=='assetName'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+                </th>
+
+                <th ng-click="sort('totalAmount')">
+                    Amount
+                    <i class="fa" ng-show="sortKey=='totalAmount'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+                </th>
+                <th class="col1">
+                    Receipt
+                </th>
+                <th ng-click="sort('supplierName')">
+                    Supplier Name
+                    <i class="fa" ng-show="sortKey=='supplierName'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+                </th>
+
+                <th ng-click="sort('description')">
+                    Description
+                    <i class="fa" ng-show="sortKey=='description'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
+                </th>
             </tr>
-        </table>
-        </div>
-    </div>
+        </thead>
+
+        <tr ng-repeat="obj in ListOfExpenses |orderBy:sortKey:reverse|filter:search">
+            <td>
+                {{obj.projectName}}
+            </td>
+            <td>
+                {{obj.assetName}}
+            </td>
+            <td>
+                {{obj.totalAmount}}
+            </td>
+            <td class="col1">
+                <img ng-if="obj.receiptPath==''" style="height:50px; width:50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" />
+                <a data-ng-click="makezoom(obj.receiptPath)">
+                    <img ng-if="obj.receiptPath!=''" style="height:50px; width:50px;" src="{{obj.receiptPath}}" alt="Alternate Text" />
+                </a>
+            </td>
+            <td>
+                {{obj.supplierName}}
+            </td>
+            <td>
+                {{obj.description}}
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>Total Amount</td>
+            <td style="background-color:aqua">{{total}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>-->
+</div>
 
 
 

@@ -1,7 +1,11 @@
 ﻿
         <div class="breadcrumb">
-            <h1>Dashboard</h1>
-           
+            <h1>Expenses summary</h1>
+            <ul>
+                <li><a href="#/home">Dashboard</a></li>
+                <li>Home</li>
+            </ul>
+    
         </div>
 
         <div class="separator-breadcrumb border-top"></div>
@@ -63,13 +67,12 @@
 
 <div class="summarysection ">
 
-    <div class="">
+ 
         <div class="row">
-            <div class="col-md-12 text-center">
-                <h4>Expenses summary</h4>
-            </div>
+          
 
-            <div style="text-align:right" class="col-md-12">
+            <div style="text-align:center" class="col-md-12">
+                <h4>Select Project</h4>
                 <select ng-model="projectid" data-ng-change="getTransactionByID(projectid)" style="margin-bottom:10px;" class="form-control">
                     <option selected value="0">- Select Project -</option>
                     <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
@@ -78,14 +81,14 @@
         </div>
     </div>
 
-    <hr />
-    <div>
+
+   
+    
+    
+
         
 
-        <!--<h4>
-            <b>{{Projectname}}</b>
-        </h4>-->
-      
+
 
         <div class="row">
             <div class="col-md-4 col-6">
@@ -294,7 +297,7 @@
 
         </div>-->
     </div>
-</div>
+
 
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle-2" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

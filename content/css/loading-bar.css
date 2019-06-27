@@ -35,7 +35,7 @@
   -moz-transition: width 350ms;
   -o-transition: width 350ms;
   transition: width 350ms;
-
+    display: none;
   background: #4e4a4a;
   position: fixed;
   z-index: 2000;
@@ -47,7 +47,7 @@
 
 /* Fancy blur effect */
 #loading-bar .peg {
-  display: block;
+  display: none;
   position: absolute;
   right: 0px;
   width: 100px;
@@ -63,16 +63,16 @@
 }
 
 #loading-bar-spinner {
-  display: none;
+  display: block;
   position: fixed;
   z-index: 100;
-  top: 10px;
-  left: 10px;
+  top: 50%;
+  left: 50%;
 }
 
 #loading-bar-spinner .spinner-icon {
-  width: 14px;
-  height: 14px;
+  width: 25px;
+  height: 25px;
 
   border:  solid 2px transparent;
   border-top-color:  #4e4a4a;
