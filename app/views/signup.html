@@ -35,12 +35,13 @@
                         <div class="auth-logo text-center">
 
                             <!--<img src="http://gull-html-laravel.ui-lib.com/assets/images/logo.png" alt="">-->
-                            <img style="width: 70px; height: 70px;  border: 1px solid #ccc; border-radius: 100% !important;" src="Images/logo.png" />
+                            <img style="width: 70px; height: 70px; border: 1px solid #ccc; border-radius: 100% !important; margin-bottom: 17px" src="Images/logo.png" />
 
-
-                            <!--<h2>Create Account</h2>-->
+                            <h3 style="color:#639; font-weight:bold">Create Account</h3>
+                     
                         </div>
                         <div class="separator-breadcrumb"></div>
+                   
                         <form action="">
                             <div class="form-group">
 
@@ -64,6 +65,9 @@
                                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                     </div>
                                     <input class="form-control" name="password" id="password" data-ng-model="registration.password" placeholder="******" type="password">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"> <i toggle="#password" class="fa fa-eye toggle-password"></i> </span>
+                                    </div>
                                 </div>
                                 <!--<input id="password" type="password" class="form-control" placeholder="Password" data-ng-model="registration.password" required>-->
                             </div>
@@ -75,10 +79,13 @@
                                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                     </div>
                                     <input class="form-control" name="repassword" id="repassword" data-ng-model="registration.confirmPassword" placeholder="******" type="password">
-                                </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"> <i toggle="#repassword" class="fa fa-eye toggle-password"></i> </span>
+                                    </div>
+                                 </div>
                                 <!--<input id="repassword" type="password" class="form-control" placeholder="Confirm Password" data-ng-model="registration.confirmPassword" required>-->
                             </div>
-                            <button data-ng-click="signUp()" class="btn btn-primary btn-block btn-rounded mt-3">Sign Up</button>
+                            <button data-ng-click="signUp()" class="btn btn-primary btn-block btn-rounded mt-3"><i class="fa fa-sign-in"></i> Sign Up</button>
                         </form>
                         <div class="checkoutbtn2" style="align-content:center">
                             <hr />

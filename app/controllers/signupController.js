@@ -11,6 +11,16 @@ app.controller('signupController', ['$scope', '$location', '$timeout', 'authServ
     };
 
 
+    $(".toggle-password").click(function () {
+        $(this).toggleClass("fal fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+
     $scope.signUp = function () {
 
         authService.saveRegistration($scope.registration).then(function (response) {
