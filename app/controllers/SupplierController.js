@@ -29,23 +29,6 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
     $scope.isEditing = false; 
     $scope.ListOfSupplier = [];
 
-    
-
-    $scope.getSuppliersByProjectID = function (id)
-    {
-
-        $scope.projectID = id;
-
-        ordersService.getSupplierByID($scope.userName).then(function (results) {
-            $scope.ListOfSupplier = results.data;
-        }, function (error) {
-        });
-    }
-
-    ordersService.getSupplierByID($scope.userName).then(function (results) {
-        $scope.ListOfSupplier = results.data;
-    }, function (error) {
-    });
 
 
     //$scope.getAll = function () {
@@ -94,7 +77,7 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
 
 
     $scope.openEditModal = function (obj) {      
-
+        debugger;
         $scope.projectID = obj.projectID;
 
         $scope.Supplier = {
@@ -126,7 +109,7 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
 
 
     ordersService.getProjects($scope.userName).then(function (results) {
-
+        debugger;
         $scope.ListOfProjects = results.data;
     }, function (error) {
     });
@@ -144,10 +127,29 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
     }
 
 
+    $scope.getSuppliersByProjectID = function (id) {
+
+        $scope.projectID = id;
+
+        ordersService.getSupplierByID($scope.userName).then(function (results) {
+            debugger;
+            $scope.ListOfSupplier = results.data;
+        }, function (error) {
+        });
+    }
+
+    ordersService.getSupplierByID($scope.userName).then(function (results) {
+        debugger;
+        $scope.projectID;
+        $scope.ListOfSupplier = results.data;
+    }, function (error) {
+    });
+
+
     
 
     $scope.saveSupplier = function () {
-
+        debugger;
         $scope.Supplier.projectID = $scope.projectID;
        
 

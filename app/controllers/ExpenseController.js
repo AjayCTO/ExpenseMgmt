@@ -2,15 +2,11 @@
 app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'localStorageService', 'SweetAlert', function ($scope, $rootScope, ordersService, localStorageService, SweetAlert) {
     
     $scope.search = "";
-
+    $scope.Page="Expense"
     if (localStorageService.get('searchExpense') != '' && localStorageService.get('searchExpense') != null && localStorageService.get('searchExpense') != undefined) {
         $scope.search = localStorageService.get('searchExpense').name;
     }
 
-
-
-
-  
     $scope.showlist = true;
 
     $scope.newcategoryname = "";
@@ -75,6 +71,8 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
     $scope.openEditModal = function (obj) {      
         //$scope.search = "";
+
+        $scope.Page="Edit Expense"
         localStorageService.remove('searchExpense');
         localStorageService.remove('searchIncoming');
 
@@ -108,7 +106,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
     $scope.addnewexpense = function () {
 
         $scope.search = "";
-
+        $scope.Page = "Create New Expense";
         localStorageService.remove('searchExpense');
         localStorageService.remove('searchIncoming');
 
@@ -134,6 +132,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
     $scope.showexpenselist = function () {
         $scope.showlist = true;
         $scope.isEditing = false;
+        $scope.Page = "Expense";
     }  
 
 
@@ -438,6 +437,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
     $scope.saveExpense = function () {
       
+       
         $scope.Expense.ProjectID = $scope.projectID;
             
 
@@ -447,6 +447,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
             $scope.message = "Expense has been added successfully";
             $scope.getExpenseByProjectID($scope.projectID);
             $scope.showlist = true;
+            $scope.Page = "Expense";
             $scope.isEditing = false;
 
             swal("Expense Added Successfully !!", "", "success")
@@ -465,17 +466,18 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
 
     $scope.updateExpense = function () {
-      
+        debugger;
         $scope.Expense.ProjectID = $scope.projectID;
 
         ordersService.updateExpense($scope.Expense, $scope.userName).then(function (response) {
-
+            debugger;
+            $scope.Page = "Expense";
             $scope.savedSuccessfully = true;
             $scope.message = "Expense has been updated successfully";
             $scope.getExpenseByProjectID($scope.projectID);
             $scope.showlist = true;
             $scope.isEditing = false;
-            swal("Expense Updated Successfully !!", "", "info")
+            //swal("Expense Updated Successfully !!", "", "info")
         },
          function (response) {
              var errors = [];

@@ -38,8 +38,10 @@
                 <select ng-model="projectid" data-ng-change="getSuppliersByProjectID(projectid)" style="margin-bottom:25px;" class="form-control">
                     <option selected value="0">- Select Project -</option>
                     <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
+             
                 </select>
             </div>
+       
         </div>
         <div style="text-align:right" class="col-md-12">
             <div>
@@ -129,19 +131,18 @@
         </table>
         </div>-->
 
-    <div class="col-md-12" ng-repeat="obj in ListOfSupplier|orderBy:sortKey:reverse|filter:search">
+    <div ng-repeat="obj in ListOfSupplier|orderBy:sortKey:reverse|filter:search">
 
         <div class="row">
-            <div class="col-3 col-md-3 text-center">
-
-                <img style="height: 50px; width: 50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" />
-                <!--<a data-ng-click="makezoom(obj.receiptPath)">
-                    <img ng-if="obj.receiptPath!=''" src="{{obj.receiptPath}}" alt="Alternate Text" style="width: 50px; height: 50px;  border: 1px solid #ccc; border-radius: 100% !important;" />
-                </a>-->
-                <!--<img src="https://image.flaticon.com/icons/png/128/149/149071.png" alt="" class="img-rounded img-responsive">-->
-            </div>
-            <div class="col-9 col-md-9 section-box">
-                <button ng-click="openEditModal(obj)"  type="button" class="btn btn-primary btn-sm m-1 EditBUtton"><i class="fa fa-pencil"></i></button>
+            <!--<div class="col-3 col-md-3 text-center">-->
+            <!--<img style="height: 50px; width: 50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" />-->
+            <!--<a data-ng-click="makezoom(obj.receiptPath)">
+                <img ng-if="obj.receiptPath!=''" src="{{obj.receiptPath}}" alt="Alternate Text" style="width: 50px; height: 50px;  border: 1px solid #ccc; border-radius: 100% !important;" />
+            </a>-->
+            <!--<img src="https://image.flaticon.com/icons/png/128/149/149071.png" alt="" class="img-rounded img-responsive">-->
+            <!--</div>-->
+            <div class="col-12 col-md-12 section-box">
+                <button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1 EditBUtton"><i class="fa fa-pencil"></i></button>
 
                 <h5>
                     <strong><b>{{obj.name}}</b></strong><a href="" target="_blank">
@@ -149,7 +150,9 @@
                         </span>
                     </a>
                 </h5>
-                <span> {{obj.address}}  Mob:-{{obj.contact}}</span>
+                <div>
+                    <span>{{obj.address}} <strong>Mob:-</strong>{{obj.contact}}</span>
+                </div>
                 <div>
                     <span>
 
@@ -158,97 +161,105 @@
                     <span>
                         <strong>Paid Amount-</strong> &#x20b9;  {{obj.amountPaid}}
                     </span>
+                </div>
                     <span>
                         <strong>Due Amount-</strong> &#x20b9; {{obj.totalAmount - obj.amountPaid}}
                     </span>
-                </div>
+              
 
 
             </div>
+        
         </div>
         <hr />
-    </div>
+        </div>
+        <!--<div class="col-md-6" ng-repeat="obj in ListOfSupplier|orderBy:sortKey:reverse|filter:search">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-3 col-md-3 text-center">
+                        <img src="https://image.flaticon.com/icons/png/128/149/149071.png" alt="" class="img-rounded img-responsive">
+                    </div>
+                    <div class="col-9 col-md-9 section-box">
+                        <h2>
+                            {{obj.name}}<a href="http://bootsnipp.com/" target="_blank">
+                                <span class="glyphicon glyphicon-new-window">
+                                </span>
+                            </a>
+                        </h2>
+                        <p>
 
-    <!--<div class="col-md-6" ng-repeat="obj in ListOfSupplier|orderBy:sortKey:reverse|filter:search">
-        <div class="well well-sm">
-            <div class="row">
-                <div class="col-3 col-md-3 text-center">
-                    <img src="https://image.flaticon.com/icons/png/128/149/149071.png" alt="" class="img-rounded img-responsive">
-                </div>
-                <div class="col-9 col-md-9 section-box">
-                    <h2>
-                        {{obj.name}}<a href="http://bootsnipp.com/" target="_blank">
-                            <span class="glyphicon glyphicon-new-window">
-                            </span>
-                        </a>
-                    </h2>
-                    <p>
-                      
-                    </p>
-                                
-                    <hr />
-                   
+                        </p>
+
+                        <hr />
+
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>-->
+        </div>-->
     </div>
 
 
-<form ng-if="showlist==false" class="form-login" role="form">
-    <div class="form-group col-md-6">
-        <label>Project Name </label>
-        <select ng-change="getdatabyid(Supplier.ProjectID)" ng-model="Supplier.ProjectID" class="form-control">
-            <option selected value="">- Select Project -</option>
-            <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
-        </select>
+<div class="row">
+    <div class="col-md-12">
+        <form ng-if="showlist==false" class="form-login" role="form">
+            <div class="form-group">
+                <label>Project Name </label>
+                <select ng-change="getdatabyid(Supplier.ProjectID)" ng-model="Supplier.ProjectID" class="form-control">
+                    <option selected value="">- Select Project -</option>
+                    <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
+                </select>
 
 
+            </div>
+
+
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Name" data-ng-model="Supplier.Name" required autofocus>
+            </div>
+
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" class="form-control" placeholder="Address" data-ng-model="Supplier.Address" required>
+            </div>
+
+            <div class="form-group">
+                <label>Contact</label>
+                <input type="text" class="form-control" placeholder="Contact" data-ng-model="Supplier.Contact" required>
+            </div>
+
+            <!--<div class="form-group">
+                <label> Select Category -- {{Expense.CategoryID}} <a data-ng-click="newcategory()" style="float:right">New</a></label>
+
+                <select class="form-control" data-ng-model="Expense.CategoryID">
+                    <option selected value="">- Select Category -</option>
+                    <option data-ng-repeat="cat in categories" value="{{cat.categoryID}}" ng-selected="cat.categoryID == $scope.Supplier.CategoryID">{{cat.name}}</option>
+                </select>
+
+
+            </div>-->
+
+            <div class="form-group">
+                <label>Total Amount</label>
+                <input type="number" class="form-control" placeholder="Total Cost" data-ng-model="Supplier.TotalAmount" required>
+            </div>
+
+            <div class="form-group">
+                <label>Amount Paid</label>
+                <input type="number" class="form-control" placeholder="Total Cost" data-ng-model="Supplier.AmountPaid" required>
+            </div>
+
+
+            <div class="form-group">
+                <button ng-disabled="(projectID == '' || projectID == null) || (Supplier.Name == '' || Supplier.Name == null)" ng-if="isEditing == false" class="btn btn-primary btn-block" type="submit" data-ng-click="saveSupplier()"> <i class="fa fa-check"></i> Save</button>
+                <button ng-disabled="(projectID == '' || projectID == null) || (Supplier.Name == '' || Supplier.Name == null)" ng-if="isEditing == true" class="btn btn-primary btn-block" type="submit" data-ng-click="updateSupplier()"> <i class="fa fa-check"></i> Update</button>
+
+            </div>
+            <div>
+                <button data-ng-click="showlistofsuppliers()" type="button" class="btn btn-dark btn-block"><i class="fa fa-times"></i> Cancel</button>
+            </div>
+
+
+        </form>
     </div>
-
-
-    <div class="form-group col-md-6">
-        <label>Name</label>
-        <input type="text" class="form-control" placeholder="Name" data-ng-model="Supplier.Name" required autofocus>
-    </div>
-
-    <div class="form-group col-md-6">
-        <label>Address</label>
-        <input type="text" class="form-control" placeholder="Address" data-ng-model="Supplier.Address" required>
-    </div>
-
-    <div class="form-group col-md-6">
-        <label>Contact</label>
-        <input type="text" class="form-control" placeholder="Contact" data-ng-model="Supplier.Contact" required>
-    </div>
-
-    <!--<div class="form-group">
-        <label> Select Category -- {{Expense.CategoryID}} <a data-ng-click="newcategory()" style="float:right">New</a></label>
-
-        <select class="form-control" data-ng-model="Expense.CategoryID">
-            <option selected value="">- Select Category -</option>
-            <option data-ng-repeat="cat in categories" value="{{cat.categoryID}}" ng-selected="cat.categoryID == $scope.Supplier.CategoryID">{{cat.name}}</option>
-        </select>
-
-
-    </div>-->
-
-    <div class="form-group col-md-6">
-        <label>Total Amount</label>
-        <input type="number" class="form-control" placeholder="Total Cost" data-ng-model="Supplier.TotalAmount" required>
-    </div>
-
-    <div class="form-group col-md-6">
-        <label>Amount Paid</label>
-        <input type="number" class="form-control" placeholder="Total Cost" data-ng-model="Supplier.AmountPaid" required>
-    </div>
-
-
-    <div class="form-group col-md-6">
-        <button ng-disabled="(projectID == '' || projectID == null) || (Supplier.Name == '' || Supplier.Name == null)" ng-if="isEditing == false" class="btn btn-primary m-1" type="submit" data-ng-click="saveSupplier()"> <i class="fa fa-check"></i> Save</button>
-        <button ng-disabled="(projectID == '' || projectID == null) || (Supplier.Name == '' || Supplier.Name == null)" ng-if="isEditing == true" class="btn btn-primary m-1" type="submit" data-ng-click="updateSupplier()"> <i class="fa fa-check"></i> Update</button>
-        <button data-ng-click="showlistofsuppliers()" type="button" class="btn btn-dark m-1"><i class="fa fa-times"></i> Cancel</button>
-   </div>
-
-    
-</form>
+</div>

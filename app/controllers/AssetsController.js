@@ -2,7 +2,7 @@
 app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageService', function ($scope, ordersService, localStorageService) {
 
     $scope.userName = localStorageService.get('authorizationData').userName;
-
+    $scope.Page = "Assets";
     localStorageService.remove('searchExpense');
     localStorageService.remove('searchIncoming');
 
@@ -29,6 +29,7 @@ app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageServ
  
 
     $scope.addnewasset = function () {
+        $scope.Page = "Create New Assets";
         $scope.Asset = {
             assetID: null,
             projectID: null,
@@ -122,6 +123,7 @@ app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageServ
             $scope.message = "Asset has been added successfully";           
             $scope.getAssetsByProjectID($scope.projectID);
             $scope.showlist = true;
+            $scope.Page = "Assets";
             $scope.isEditing = false;
 
         },
@@ -142,7 +144,7 @@ app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageServ
 
 
     $scope.openEditModal = function (Asset) {
-
+        $scope.Page = "Edit Assets";
         $scope.projectID = Asset.projectID;
 
         console.log("open edit modal");
@@ -178,6 +180,7 @@ app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageServ
             $scope.getAssetsByProjectID($scope.projectID);
             $scope.showlist = true;
             $scope.isEditing = false;
+            $scope.Page = "Assets";
         },
          function (response) {
              var errors = [];

@@ -6,10 +6,10 @@
     </a>
 </nav>
 <div class="breadcrumb">
-    <h1>Expense Management </h1>
+    <h3 class="h3header">Expense Management </h3>
     <ul>
         <li><a href="#/home">Dashboard</a></li>
-        <li>Expense</li>
+        <li>{{Page}}</li>
     </ul>
 </div>
 
@@ -18,16 +18,16 @@
 <div ng-if="showlist==true">
 
     <div class="row">
-    
+
         <div style="text-align:center;" class="col-md-12">
             <div class="form-group">
-                <h4>Select Project</h4>
+                <h5>Select Project</h5>
                 <select ng-model="projectid" data-ng-change="getExpenseByProjectID(projectid)" style="margin-bottom:25px;" class="form-control">
                     <option selected value="0">- Select Project -</option>
                     <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
                 </select>
             </div>
-            
+
 
         </div>
         <div style="text-align:right" class="col-md-12">
@@ -45,7 +45,7 @@
             <!--<input class="form-control" placeholder="Type to Search" type="text" data-ng-model="search" name="name" value="" />-->
         </div>
         <!--<div style="text-align:right" class="col-md-3">
-            <input class="form-control" placeholder="Type to Search" type="text" data-ng-model="search" name="name" value="" /> 
+            <input class="form-control" placeholder="Type to Search" type="text" data-ng-model="search" name="name" value="" />
         </div>-->
     </div>
     <div class="separator-breadcrumb"></div>
@@ -120,256 +120,270 @@
 
                 <td>
                     <!--<button ng-click="getProjectByID(obj.ProjectID)" type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i> GetByID</button>-->
-                    <!--<button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i> Edit</button>-->
-                    <!--<button ng-click="deleteProject(obj.ProjectID)" type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash-o"></i> Delete</button>-->
-                <!--</td>
+    <!--<button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i> Edit</button>-->
+    <!--<button ng-click="deleteProject(obj.ProjectID)" type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash-o"></i> Delete</button>-->
+    <!--</td>
             </tr>
         </table>
     </div>-->
-    <div class="col-md-12" ng-repeat="obj in ListOfExpenses |orderBy:sortKey:reverse|filter:search">
-       
-            <div class="row">
-                <div class="col-3 col-md-3 text-center">
+    <div ng-repeat="obj in ListOfExpenses |orderBy:sortKey:reverse|filter:search">
 
-                    <img ng-if="obj.receiptPath==''" style="height: 50px; width: 50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" />
-                    <a data-ng-click="makezoom(obj.receiptPath)">
-                        <img ng-if="obj.receiptPath!=''" src="{{obj.receiptPath}}" alt="Alternate Text" style="width: 50px; height: 50px;  border: 1px solid #ccc; border-radius: 100% !important;" />
-                    </a>
-                    <!--<img src="https://image.flaticon.com/icons/png/128/149/149071.png" alt="" class="img-rounded img-responsive">-->
-                </div>
-                <div class="col-9 col-md-9 section-box">
-                    <button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1 EditBUtton"><i class="fa fa-pencil"></i></button>
+        <div class="row">
+            <div class="col-3 col-md-3 text-center">
 
-                    <h5>
-                        <strong><b>{{obj.projectName}}</b></strong> 
-                    </h5>
+                <img ng-if="obj.receiptPath==''" style="height: 50px; width: 50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" />
+                <a data-ng-click="makezoom(obj.receiptPath)">
+                    <img ng-if="obj.receiptPath!=''" src="{{obj.receiptPath}}" alt="Alternate Text" style="width: 50px; height: 50px;  border: 1px solid #ccc; border-radius: 100% !important;" />
+                </a>
+                <!--<img src="https://image.flaticon.com/icons/png/128/149/149071.png" alt="" class="img-rounded img-responsive">-->
+            </div>
+            <div class="col-9 col-md-9 section-box">
+                <button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1 EditBUtton"><i class="fa fa-pencil"></i></button>
+
+                <h5>
+                    <strong><b>{{obj.projectName}}</b></strong>
+                </h5>
+                <div>
                     <span>{{obj.description}}</span>
+                </div>
+                <div>
                     <span>
-                      Assest-{{obj.assetName}} 
+                        <strong>Assest-</strong> {{obj.assetName}}
+                    </span>
+                </div>
+                <div>
+                    <span>
+                        <strong>Total Amount-</strong>&#x20b9;{{obj.totalAmount}}
                     </span>
 
-              
 
                 </div>
+                <div>
+                    <span>
+                        <strong>Supplier-</strong>{{obj.supplierName}}
+                    </span>
+
+                </div>
+
             </div>
+        </div>
         <hr />
     </div>
-    
-   
+
+
 </div>
 
+<div class="row">
+    <div class="col-md-12">
+
+    
+            <form ng-if="showlist==false" name="Expenceform">
+
+               
 
 
-<div ng-if="showlist==false">
-    <form name="Expenceform">
+                        <div class="form-group">
+                            <label>Project Name </label>
 
-        <div class="row">
+                            <select ng-change="getdatabyid(Expense.ProjectID)" ng-model="Expense.ProjectID" class="form-control">
+                                <option selected value="">- Select Project -</option>
+                                <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
+                            </select>
+
+                    </div>
+                 
+                        <div class="form-group">
+                            <label>Amount</label>
+                            <input type="number" class="form-control" placeholder="Amount" data-ng-model="Expense.Amount" required>
+                        </div>
+                  
+             
 
 
-            <div class="col-md-6">
+               
+               
+                        <div class="form-group">
+                            <label>Refrence</label>
+                            <input type="text" class="form-control" placeholder="Refrence" data-ng-model="Expense.Refrence">
+                        </div>
+                
+             
+                        <div class="form-group">
+                            <label> Select Supplier <a data-ng-click="newsupplier()" style="cursor:pointer;float:right;color:white" class="btn btn-success btn-sm">Add New</a></label>
+
+                            <select class="form-control" data-ng-model="Expense.SupplierID">
+                                <option selected value="">- Select Supplier -</option>
+                                <option data-ng-repeat="supp in suppliers" value="{{supp.supplierID}}" ng-selected="supp.supplierID == Expense.SupplierID">{{supp.name}}</option>
+                            </select>
+                        </div>
+                 
+                
+
+
+             
+
+                
+                        <div class="form-group">
+                            <label>IsApproved</label>
+                            <input type="text" class="form-control" placeholder="IsApproved" data-ng-model="Expense.IsApproved">
+                        </div>
+           
+
+
+
+
                 <div class="form-group">
-                    <label>Project Name </label>
-
-                    <select ng-change="getdatabyid(Expense.ProjectID)" ng-model="Expense.ProjectID" class="form-control">
-                        <option selected value="">- Select Project -</option>
-                        <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
-                    </select>
-
-
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Amount</label>
-                    <input type="number" class="form-control" placeholder="Amount" data-ng-model="Expense.Amount" required>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Refrence</label>
-                    <input type="text" class="form-control" placeholder="Refrence" data-ng-model="Expense.Refrence">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label> Select Supplier <a data-ng-click="newsupplier()" style="cursor:pointer;float:right">New</a></label>
-
-                    <select class="form-control" data-ng-model="Expense.SupplierID">
-                        <option selected value="">- Select Supplier -</option>
-                        <option data-ng-repeat="supp in suppliers" value="{{supp.supplierID}}" ng-selected="supp.supplierID == Expense.SupplierID">{{supp.name}}</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>IsApproved</label>
-                    <input type="text" class="form-control" placeholder="IsApproved" data-ng-model="Expense.IsApproved">
-                </div>
-            </div>
-        </div>
-
-
-
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>select Asset <a data-ng-click="newasset()" style="cursor: pointer; float: right">New</a></label>
+                    <label>Select Asset <a data-ng-click="newasset()" style="cursor: pointer; float: right; color:white" class="btn btn-success btn-sm">Add New</a></label>
 
                     <select class="form-control" data-ng-model="Expense.AssetID">
                         <option selected value="">- Select Asset -</option>
                         <option data-ng-repeat="as in assets" value="{{as.assetID}}" ng-selected="as.assetID == Expense.AssetID">{{as.name}}</option>
                     </select>
-
-
                 </div>
+
+             
+                        <div class="form-group">
+                            <label> Select Category  <a data-ng-click="newcategory()" style="cursor: pointer; float: right;color:white" class="btn btn-success btn-sm">Add New</a></label>
+
+                            <select class="form-control" data-ng-model="Expense.CategoryID">
+                                <option selected value="">- Select Category -</option>
+                                <option data-ng-repeat="cat in categories" value="{{cat.categoryID}}" ng-selected="cat.categoryID == Expense.CategoryID">{{cat.name}}</option>
+                            </select>
+
+                            </div>
+             
+
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea type="text" class="form-control" placeholder="Description" data-ng-model="Expense.Description" required></textarea>
+                        </div>
+
+                
+                            <div class="form-group">
+                                <label>Receipt</label>
+                                <div class="dropzone" id="single-file-upload">
+                                    <div class="fallback">
+                                        <input type="file" id="fileName" multiple name="fileName" style="cursor:pointer" value="" />
+                                        <img ng-if="Expense.ReceiptPath!=''" alt="Choose Image" id="showUploaded" style="width:89px;height:90px" src="{{Expense.ReceiptPath}}" />
+
+                                        <img ng-if="Expense.ReceiptPath==''" alt="Choose Image" id="showUploaded" style="width:89px;height:90px" src="https://static.thenounproject.com/png/220984-200.png" />
+
+                                        <button ng-if="isEditing == true" ng-click="removeImage()"><i class="fa fa-close"></i> </button>
+                                    </div>
+                                </div>
+                            </div>
+
+              
+
                 <div class="form-group">
-                    <label> Select Category  <a data-ng-click="newcategory()" style="cursor: pointer; float: right">New</a></label>
-
-                    <select class="form-control" data-ng-model="Expense.CategoryID">
-                        <option selected value="">- Select Category -</option>
-                        <option data-ng-repeat="cat in categories" value="{{cat.categoryID}}" ng-selected="cat.categoryID == Expense.CategoryID">{{cat.name}}</option>
-                    </select>
 
 
+                    <button ng-disabled="(projectID == '' || projectID == null) || (Expense.AssetID == '' || Expense.AssetID == null) || (Expense.CategoryID == '' || Expense.CategoryID == null) || (Expense.Amount == '' || Expense.Amount == null)" ng-if="isEditing == false" class="btn btn-primary btn-block" type="submit" data-ng-click="saveExpense()"><i class="fa fa-check"></i> Save</button>
+                    <button ng-disabled="(projectID == '' || projectID == null) || (Expense.AssetID == '' || Expense.AssetID == null) || (Expense.CategoryID == '' || Expense.CategoryID == null) || (Expense.Amount == '' || Expense.Amount == null)" ng-if="isEditing == true" class="btn btn-primary btn-block" type="submit" data-ng-click="updateExpense()"><i class="fa fa-check"></i> Update</button>
+                    <button type="button" data-ng-click="showexpenselist()" class="btn btn-dark btn-block"><i class="fa fa-times"></i> Cancel</button>
                 </div>
 
-                <div class="form-group">
-                    <label>Description</label>
-                    <input type="text" class="form-control" placeholder="Description" data-ng-model="Expense.Description" required>
-                </div>
+            </form>
+        </div>
 
-            </div>
-            <div class="col-md-6">
-                <label>Receipt</label>
-                <div class="dropzone" id="single-file-upload">
-                    <div class="fallback">
-                        <input type="file" id="fileName" multiple name="fileName" style="cursor:pointer" value="" />
-                        <img ng-if="Expense.ReceiptPath!=''" alt="Choose Image" id="showUploaded" style="width:89px;height:90px" src="{{Expense.ReceiptPath}}" />
+    </div>
 
-                        <img ng-if="Expense.ReceiptPath==''" alt="Choose Image" id="showUploaded" style="width:89px;height:90px" src="https://static.thenounproject.com/png/220984-200.png" />
-                        
-                        <button ng-if="isEditing == true" ng-click="removeImage()"><i class="fa fa-close"></i> </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="categorymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle-2" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle-2">Add Category</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Type Your category</label>
+                            <input data-ng-model="Categoryobject.Name" type="text" class="form-control" name="name" value="" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button data-ng-click="saveNewCategory()" data-ng-disabled="Categoryobject.Name==''" type="button" class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <button ng-disabled="(projectID == '' || projectID == null) || (Expense.AssetID == '' || Expense.AssetID == null) || (Expense.CategoryID == '' || Expense.CategoryID == null) || (Expense.Amount == '' || Expense.Amount == null)" ng-if="isEditing == false" class="btn btn-primary m-1" type="submit" data-ng-click="saveExpense()"><i class="fa fa-check"></i> Save</button>
-        <button ng-disabled="(projectID == '' || projectID == null) || (Expense.AssetID == '' || Expense.AssetID == null) || (Expense.CategoryID == '' || Expense.CategoryID == null) || (Expense.Amount == '' || Expense.Amount == null)" ng-if="isEditing == true" class="btn btn-primary m-1" type="submit" data-ng-click="updateExpense()"><i class="fa fa-check"></i> Update</button>
-        <button type="button" data-ng-click="showexpenselist()" class="btn btn-dark m-1"><i class="fa fa-times"></i> Cancel</button>
 
-    </form>
-</div>
-
-   
-
-
-  <!-- Modal -->
-<div class="modal fade" id="categorymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle-2" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle-2">Add Category</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>Type Your category</label>
-                    <input data-ng-model="Categoryobject.Name" type="text" class="form-control" name="name" value="" />   
+        <div class="modal fade" id="assetmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle-2" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Asset</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Type Your Asset Name</label>
+                            <input data-ng-model="Assetobject.Name" type="text" class="form-control" name="name" value="" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button data-ng-click="saveNewAsset()" data-ng-disabled="Assetobject.Name==''" type="button" class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button data-ng-click="saveNewCategory()" data-ng-disabled="Categoryobject.Name==''" type="button" class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-            </div>
         </div>
-    </div>
-</div>
 
 
-<div class="modal fade" id="assetmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle-2" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Add Asset</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>Type Your Asset Name</label>
-                    <input data-ng-model="Assetobject.Name" type="text" class="form-control" name="name" value="" />
+        <div class="modal fade" id="suppliermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle-2" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle-2">Add Supplier</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Type Your Supplier</label>
+                            <input data-ng-model="Supplierobject.Name" type="text" class="form-control" name="name" value="" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button data-ng-click="saveNewSupplier()" data-ng-disabled="Supplierobject.Name==''" type="button" class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button data-ng-click="saveNewAsset()" data-ng-disabled="Assetobject.Name==''" type="button" class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-            </div>
         </div>
-    </div>
-</div>
 
 
-<div class="modal fade" id="suppliermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle-2" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle-2">Add Supplier</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>Type Your Supplier</label>
-                    <input data-ng-model="Supplierobject.Name" type="text" class="form-control" name="name" value="" />
+        <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle-2" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle-2">Receipt</h5>
+
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{enlargeimage}}" alt="Alternate Text" />
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-dark" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button data-ng-click="saveNewSupplier()" data-ng-disabled="Supplierobject.Name==''" type="button" class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-            </div>
         </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle-2" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle-2">Receipt</h5>
-
-            </div>
-            <div class="modal-body">
-                <img src="{{enlargeimage}}" alt="Alternate Text" />
-            </div>
-            <div class="modal-footer">
-
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
-<style>
-    label
-    {
-        width:100%;
-    }
-</style>
+        <style>
+            label {
+                width: 100%;
+            }
+        </style>

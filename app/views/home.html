@@ -82,7 +82,7 @@
     </div>
 
 
-   
+   <div class="separator-breadcrumb"></div>
     
     
 
@@ -141,15 +141,17 @@
         </div>
 
 
+    <div class="separator-breadcrumb"></div>
+
         <div class="row">
-            <div class="col-md-12" style="margin-bottom:15px " ng-if="ListOfExpenses.length>0">
-                <div class="card">
-
-                    <div class="card-header text-center">
-                        <h4 class="card-title">Last 5 Expenses</h4>
+            <div class="col-md-12" style="margin-bottom:15px" ng-if="ListOfExpenses.length>0">
+          
+                <div class="text-center">
+              
+                        <h4 class="card-title "><b>Last 5 Expenses</b></h4>
                     </div>
-
-                    <div class="card-body">                       
+                <hr />
+                                    
                             <div ng-repeat="obj in ListOfExpenses">
                                 <div class="row" style="margin-bottom:10px">
                                     <div>
@@ -175,17 +177,21 @@
                                 </div>  
                                                  
                         </div>
-                    </div>
-                </div>
+                   
+            
             </div>
-            <div class="col-md-12" ng-if="ListOfIncomings.length>0">
-                <div class="card">
 
-                    <div class="card-header text-center">
-                        <h4 class="card-title">Last 5 Incoming</h4>
+            <div class="separator-breadcrumb"></div>
+            <div class="col-md-12" ng-if="ListOfIncomings.length>0">
+                
+
+              
+                    <div class="text-center">
+
+                        <h4 class="card-title "><b>Last 5  Incoming</b></h4>
                     </div>
 
-                    <div class="card-body">
+                <hr />
 
                         <div ng-repeat="obj in ListOfIncomings">
                             <div class="row" style="margin-bottom:10px">
@@ -211,8 +217,7 @@
                                 </div>
                             </div>
                     </div>
-                </div>
-            </div>
+     
         </div>
 
         </div>

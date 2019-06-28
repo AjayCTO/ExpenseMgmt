@@ -2,7 +2,7 @@
 app.controller('projectController', ['$scope', 'ordersService', 'localStorageService', function ($scope, ordersService, localStorageService) {
 
     $scope.userName = localStorageService.get('authorizationData').userName;
- 
+    $scope.Page = "Projects";
     localStorageService.remove('searchExpense');
     localStorageService.remove('searchIncoming');
 
@@ -32,7 +32,7 @@ app.controller('projectController', ['$scope', 'ordersService', 'localStorageSer
 
     $scope.getAll = function () {
         ordersService.getProjects($scope.userName).then(function (results) {
-
+            $scope.Page = "Projects";
             $scope.ListOfProjects = results.data;
 
             if (localStorageService.get('projectID') == '' || localStorageService.get('projectID') == null || localStorageService.get('projectID') == undefined)
@@ -47,6 +47,7 @@ app.controller('projectController', ['$scope', 'ordersService', 'localStorageSer
     $scope.getAll();
     
     $scope.addnewproject = function () {
+        $scope.Page = "Create New Project";
         $scope.project = {
             projectID: null,
             name: "",
@@ -63,10 +64,11 @@ app.controller('projectController', ['$scope', 'ordersService', 'localStorageSer
     $scope.showprojectlist = function () {
         $scope.showlist = true;
         $scope.isEditing = false;
+        $scope.Page = "Projects";
     }
 
     $scope.openEditModal = function (project) {      
-
+        $scope.Page = "Edit Project";
         $scope.project = {
             projectID: project.projectID,
             name: project.name,
@@ -81,13 +83,14 @@ app.controller('projectController', ['$scope', 'ordersService', 'localStorageSer
 
 
 
-    $scope.saveNewCustomer = function () {
+    $scope.saveNewCustomer = function ()
+    {
         ordersService.saveCustomer($scope.Customerobject,$scope.userName).then(function (response) {
 
             $("#customermodal").modal("hide");
 
         
-
+            $scope.Customerobject.Name = "";
             $scope.getcustomeragain();
 
             setTimeout(function () {
@@ -136,7 +139,7 @@ app.controller('projectController', ['$scope', 'ordersService', 'localStorageSer
 
 
     $scope.getProjectByID = function (id) {
-
+        $scope.Page = "Projects";
         ordersService.getProjectByID(id).then(function (results) {
 
             $scope.project = results.data;
@@ -157,6 +160,7 @@ app.controller('projectController', ['$scope', 'ordersService', 'localStorageSer
             $scope.getAll();
             $scope.showlist = true;
             $scope.isEditing = false;
+            $scope.Page = "Projects";
         },
          function (response) {
              var errors = [];
@@ -176,7 +180,7 @@ app.controller('projectController', ['$scope', 'ordersService', 'localStorageSer
 
             $scope.savedSuccessfully = true;
             $scope.message = "Project has been updated successfully";
-
+            $scope.Page = "Projects";
             $scope.getAll();
             $scope.showlist = true;
             $scope.isEditing = false;
