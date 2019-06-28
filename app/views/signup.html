@@ -1,7 +1,24 @@
-﻿
+﻿<style>
+    .checkoutbtn2 {
+        width: 100%;
+        left: 0;
+        right: 0;
+        border-radius: 0;
+
+        margin-bottom: 13px;
+        position: fixed;
+        bottom: 0;
+        text-align: center;
+        z-index: 1000;
+        background-color: #ffffff;
+        /*color: #fff !important;*/
+        /*padding: 7px;*/
+        font-size: 14px;
+    }
+</style>
 <div  class="container">
     <div class="auth-content">
-        <div style="box-shadow: 10px -1px 26px #888 !important;" class="card o-hidden">
+       
             <div class="row">
                 <!--<div class="col-md-6 text-center " style="background-size: cover;background-image: url(http://gull-html-laravel.ui-lib.com/assets/images/photo-long-3.jpg)">
                     <div class="pl-3 auth-right">
@@ -18,27 +35,55 @@
                         <div class="auth-logo text-center">
 
                             <!--<img src="http://gull-html-laravel.ui-lib.com/assets/images/logo.png" alt="">-->
-                            <img style="width: 230px!important; height: 127px!important;" src="Images/logo-colored.png"/>
+                            <img style="width: 70px; height: 70px;  border: 1px solid #ccc; border-radius: 100% !important;" src="Images/logo.png" />
+
+
+                            <!--<h2>Create Account</h2>-->
                         </div>
-                     
+                        <div class="separator-breadcrumb"></div>
                         <form action="">
                             <div class="form-group">
-                                <label for="username">Your name</label>
-                                <input id="username" type="text" class="form-control" placeholder="Username" data-ng-model="registration.userName" required autofocus>
+
+                                <label for="username">User name</label>
+                                <div class="input-group">
+
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                    </div>
+                                    <input name="email" id="username" class="form-control" data-ng-model="registration.userName" placeholder="User Name or login" type="Text">
+                                </div>
+
+                                <!--<input id="username" type="text" class="form-control" placeholder="Username" data-ng-model="registration.userName" required autofocus>-->
                             </div>
 
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input id="password" type="password" class="form-control" placeholder="Password" data-ng-model="registration.password" required>
+                                <div class="input-group">
+
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                    </div>
+                                    <input class="form-control" name="password" id="password" data-ng-model="registration.password" placeholder="******" type="password">
+                                </div>
+                                <!--<input id="password" type="password" class="form-control" placeholder="Password" data-ng-model="registration.password" required>-->
                             </div>
                             <div class="form-group">
                                 <label for="repassword">Retype password</label>
-                                <input id="repassword" type="password" class="form-control" placeholder="Confirm Password" data-ng-model="registration.confirmPassword" required>
+                                <div class="input-group">
+
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                    </div>
+                                    <input class="form-control" name="repassword" id="repassword" data-ng-model="registration.confirmPassword" placeholder="******" type="password">
+                                </div>
+                                <!--<input id="repassword" type="password" class="form-control" placeholder="Confirm Password" data-ng-model="registration.confirmPassword" required>-->
                             </div>
                             <button data-ng-click="signUp()" class="btn btn-primary btn-block btn-rounded mt-3">Sign Up</button>
                         </form>
-                        <div style="align-content:center">
-                            <a href="#/login">Already Have Account?</a>
+                        <div class="checkoutbtn2" style="align-content:center">
+                            <hr />
+                            <a href="#/login">
+                           <span style="color:black">Already have an account?</span> <b>Sign In</b></a>
                         </div>
                        
                     </div>
@@ -51,7 +96,7 @@
                 {{message}}
             </div>
 
-        </div>
+      
     </div>
 </div>
 
