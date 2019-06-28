@@ -3,7 +3,7 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
 
     localStorageService.remove('searchExpense');
     localStorageService.remove('searchIncoming');
-
+    $scope.Page = "Suppliers";
 
     $scope.userName = localStorageService.get('authorizationData').userName;
 
@@ -56,10 +56,12 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
     $scope.showlistofsuppliers = function () {
         $scope.showlist = true;
         $scope.isEditing = false;
+        $scope.Page = "Suppliers";
     }
 
 
     $scope.addnewsupplier = function () {
+        $scope.Page = "Add New Supplier";
         $scope.Supplier = {
             SupplierID: "",
             Name: "",
@@ -78,6 +80,7 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
 
     $scope.openEditModal = function (obj) {      
         debugger;
+        $scope.Page = "Edit Supplier";
         $scope.projectID = obj.projectID;
 
         $scope.Supplier = {
@@ -163,6 +166,7 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
             $scope.getSuppliersByProjectID($scope.projectID);
             $scope.showlist = true;
             $scope.isEditing = false;
+            $scope.Page = "Suppliers";
 
         },
          function (response) {
@@ -189,6 +193,7 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
             $scope.getSuppliersByProjectID($scope.projectID);
             $scope.showlist = true;
             $scope.isEditing = false;
+            $scope.Page = "Suppliers";
         },
          function (response) {
              var errors = [];

@@ -3,7 +3,7 @@ app.controller('CategoryController', ['$scope', 'ordersService', 'localStorageSe
 
  
     $scope.userName = localStorageService.get('authorizationData').userName;
-
+    $scope.Page="Categories"
     localStorageService.remove('searchExpense');
     localStorageService.remove('searchIncoming');
 
@@ -26,7 +26,7 @@ app.controller('CategoryController', ['$scope', 'ordersService', 'localStorageSe
     $scope.savedSuccessfully = false; 
 
     $scope.openEditModal = function (category) {
-
+        $scope.Page = "Edit Category"
         $scope.projectID = category.projectID;
 
         $scope.Category = {
@@ -43,6 +43,7 @@ app.controller('CategoryController', ['$scope', 'ordersService', 'localStorageSe
     $scope.showcategorylist = function () {
         $scope.showlist = true;
         $scope.isEditing = false;
+        $scope.Page = "Categories";
     }
 
     ordersService.getProjects($scope.userName).then(function (results) {
@@ -98,7 +99,7 @@ app.controller('CategoryController', ['$scope', 'ordersService', 'localStorageSe
     }
 
     $scope.addnewcategory = function () {
-
+        $scope.Page = "Add New Category"
         $scope.Category = {
             CategoryID: null,
             ProjectID: null,
@@ -126,6 +127,7 @@ app.controller('CategoryController', ['$scope', 'ordersService', 'localStorageSe
             $scope.getCategoryByProjectID($scope.projectID);
             $scope.isEditing = false;
             $scope.showlist = true;
+            $scope.Page = "Categories";
         },
          function (response) {
              var errors = [];
@@ -152,6 +154,7 @@ app.controller('CategoryController', ['$scope', 'ordersService', 'localStorageSe
             $scope.getCategoryByProjectID($scope.projectID);
             $scope.isEditing = false;
             $scope.showlist = true;
+            $scope.Page = "Categories";
         },
          function (response) {
              var errors = [];

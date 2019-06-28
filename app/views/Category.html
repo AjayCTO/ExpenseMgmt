@@ -9,7 +9,7 @@
     <h1>Category Management</h1>
     <ul>
         <li><a href="">Dashboard</a></li>
-        <li>Category</li>
+        <li>{{Page}}</li>
     </ul>
 </div>
 
@@ -78,10 +78,10 @@
                     Category Description
                     <i class="fa" ng-show="sortKey=='description'" ng-class="{'fa fa-sort-asc':reverse,'fa fa-sort-desc':!reverse}"></i>
 
-                </th> 
+                </th>
                 <th>
                     Action
-                </th>               
+                </th>
             </tr>
         </thead>
 
@@ -91,30 +91,29 @@
             </td>
 
             <td>-->
-                <!--{{obj.description}}
-            </td>
+    <!--{{obj.description}}
+    </td>
 
 
-            <td>
-                <button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i> Edit</button>-->
-                <!--<button ng-click="deleteCategory(obj.projectID)" type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash-o"></i> Delete</button>-->
-            <!--</td>
+    <td>
+        <button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1"><i class="fa fa-pencil"></i> Edit</button>-->
+    <!--<button ng-click="deleteCategory(obj.projectID)" type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash-o"></i> Delete</button>-->
+    <!--</td>
 
 
         </tr>
     </table>-->
-    <div class="col-md-12" ng-repeat="obj in ListOfCategories |orderBy:sortKey:reverse|filter:search">
+    <div ng-repeat="obj in ListOfCategories |orderBy:sortKey:reverse|filter:search">
 
         <div class="row">
-            <div class="col-3 col-md-3 text-center">
-
-                <img style="height: 50px; width: 50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" />
-                <!--<a data-ng-click="makezoom(obj.receiptPath)">
-                    <img ng-if="obj.receiptPath!=''" src="{{obj.receiptPath}}" alt="Alternate Text" style="width: 50px; height: 50px;  border: 1px solid #ccc; border-radius: 100% !important;" />
-                </a>-->
-                <!--<img src="https://image.flaticon.com/icons/png/128/149/149071.png" alt="" class="img-rounded img-responsive">-->
-            </div>
-            <div class="col-9 col-md-9 section-box">
+            <!--<div class="col-3 col-md-3 text-center">-->
+            <!--<img style="height: 50px; width: 50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" />-->
+            <!--<a data-ng-click="makezoom(obj.receiptPath)">
+                <img ng-if="obj.receiptPath!=''" src="{{obj.receiptPath}}" alt="Alternate Text" style="width: 50px; height: 50px;  border: 1px solid #ccc; border-radius: 100% !important;" />
+            </a>-->
+            <!--<img src="https://image.flaticon.com/icons/png/128/149/149071.png" alt="" class="img-rounded img-responsive">-->
+            <!--</div>-->
+            <div class="col-12 col-md-12 section-box">
                 <button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1 EditBUtton"><i class="fa fa-pencil"></i></button>
 
                 <h5>
@@ -123,11 +122,11 @@
                         </span>
                     </a>
                 </h5>
-        
-                <span>
-                 <strong><b> Description </b></strong>  {{obj.description}}
-                </span>
-
+                <div>
+                    <span>
+                        <strong ng-if="{{obj.description!=''}}">Description:-</strong>  {{obj.description}}
+                    </span>
+                </div>
 
 
             </div>
@@ -137,46 +136,52 @@
 </div>
 
 
-<form ng-if="showlist==false" class="form-login" role="form">
+<div class="row">
+    <div class="col-md-12">
 
 
-    <div class="form-group col-md-6">
-        <label>Name </label>
-        <input type="text" class="form-control" placeholder="Name" data-ng-model="Category.name" required autofocus>
+
+        <form ng-if="showlist==false" class="form-login" role="form">
+
+
+            <div class="form-group">
+                <label>Name </label>
+                <input type="text" class="form-control" placeholder="Name" data-ng-model="Category.name" required autofocus>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" class="form-control" placeholder="Description" data-ng-model="Category.description" required>
+            </div>
+
+            <div class="form-group">
+                <label>Project</label>
+                <!--<select ng-model="projectid" data-ng-change="getCategoryByProjectID(projectid)" style="margin-bottom:10px;" class="form-control">
+                    <option selected value="0">- Select Project -</option>
+                    <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
+                </select>-->
+
+                <select ng-model="projectid" data-ng-change="setProjectID(projectid)" style="margin-bottom:10px;" class="form-control">
+                    <option selected value="">- Select Project -</option>
+                    <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
+                </select>
+            </div>
+
+
+
+            <div class="form-group">
+                <button ng-disabled="(projectID == '' || projectID == null) || (Category.name == '' || Category.name == null)" ng-if="isEditing == false" class="btn btn-primary btn-block"  type="submit" data-ng-click="saveCategory()"> <i class="fa fa-check"></i> Save</button>
+
+                <button ng-disabled="(projectID == '' || projectID == null) || (Category.name == '' || Category.name == null)" ng-if="isEditing == true" class="btn btn-primary btn-block" type="submit" data-ng-click="updateCategory()"> <i class="fa fa-check"></i> Update</button>
+
+                <button data-ng-click="showcategorylist()" type="button" class="btn btn-dark btn-block"><i class="fa fa-times"></i> Cancel</button>
+
+            </div>
+
+
+        </form>
     </div>
-
-    <div class="form-group col-md-6">
-        <label>Description</label>
-        <input type="text" class="form-control" placeholder="Description" data-ng-model="Category.description" required>
-    </div>  
-
-    <div class="form-group col-md-6">
-        <label>Project</label>
-        <!--<select ng-model="projectid" data-ng-change="getCategoryByProjectID(projectid)" style="margin-bottom:10px;" class="form-control">
-            <option selected value="0">- Select Project -</option>
-            <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
-        </select>-->
-
-        <select ng-model="projectid" data-ng-change="setProjectID(projectid)" style="margin-bottom:10px;" class="form-control">
-            <option selected value="">- Select Project -</option>
-            <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
-        </select>
-    </div> 
-   
-
-
-    <div class="form-group col-md-6">
-        <button ng-disabled="(projectID == '' || projectID == null) || (Category.name == '' || Category.name == null)" ng-if="isEditing == false" class="btn btn-primary m-1" type="submit" data-ng-click="saveCategory()"> <i class="fa fa-check"></i> Save</button>
-
-        <button ng-disabled="(projectID == '' || projectID == null) || (Category.name == '' || Category.name == null)" ng-if="isEditing == true" class="btn btn-primary m-1" type="submit" data-ng-click="updateCategory()"> <i class="fa fa-check"></i> Update</button>
-
-        <button data-ng-click="showcategorylist()" type="button" class="btn btn-dark m-1"><i class="fa fa-times"></i> Cancel</button>
-
-    </div>
-
-       
-</form>
-
+</div>
 <div class="modal fade" id="customermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle-2" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
