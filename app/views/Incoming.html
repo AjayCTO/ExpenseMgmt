@@ -194,16 +194,17 @@
                 <label>Receipt</label>
                 <div class="dropzone" id="single-file-upload">
                     <div class="fallback">
-                        <input type="file" id="fileName" multiple name="fileName" value="" />
+                        <input style="display:none" type="file" id="fileName"  name="fileName" value="" />
 
-                        <img ng-if="Incoming.ReceiptPath!=''" alt="Choose Image" id="showUploaded" style="width:89px;height:90px" src="{{Incoming.ReceiptPath}}" />
+                        <img ng-if="Incoming.ReceiptPath!=''" ng-click="openfile()" alt="Choose Image" id="showUploaded" style="width: 89px; height: 90px; border: 1px solid #ccc; border-radius: 100% !important" src="{{Incoming.ReceiptPath}}" />
 
-                        <img ng-if="Incoming.ReceiptPath==''" alt="Choose Image" id="showUploaded" style="width:89px;height:90px" src="https://static.thenounproject.com/png/220984-200.png" />
+                        
+                        <img ng-if="Incoming.ReceiptPath==''" ng-click="openfile()" alt="Choose Image" id="showUploaded" style="width: 89px; height: 90px; border: 1px solid #ccc; border-radius: 100% !important; " src="https://static.thenounproject.com/png/220984-200.png" />
 
-
+                        <span ng-if="Incoming.ReceiptPath!=''" ng-click="removeImage()"> Remove</span>  
 
                         <!--<img alt="Choose Image" id="showUploaded" style="width:89px;height:90px" src="{{Incoming.ReceiptPath}}" />-->
-                        <button ng-if="isEditing == true" ng-click="removeImage()">Update Image</button>
+                        <!--<button ng-if="isEditing == true" ng-click="removeImage()">Update Image</button>-->
                     </div>
                 </div>
             </div>

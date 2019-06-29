@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('incomingController', ['$scope', 'ordersService', 'localStorageService', function ($scope, ordersService, localStorageService) {
-
+    $scope.filelenght = 0;
     $scope.isEditing = false;
     $scope.search = "";
     $scope.Page = "Incoming";
@@ -73,6 +73,7 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
 
     $scope.removeImage = function () {
         $scope.Incoming.ReceiptPath = "";
+      
     }
 
     $scope.openEditModal = function (obj) {
@@ -158,7 +159,8 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
             ProjectID: null,
             Date: "",
             Amount: "",
-            SourceName: ""
+            SourceName: "",
+            ReceiptPath: ""
         };
 
 
@@ -166,7 +168,10 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
         $scope.isEditing = false;
     }
 
-
+    $scope.openfile = function () {
+      
+        $("#fileName").click();
+    }
 
     $scope.getIncomingByID = function (id) {
 
@@ -257,8 +262,9 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
     }
 
     $(document.body).on('change', '#fileName', function () {
-
+      
         var files = event.target.files; //FileList object
+       
         var output = document.getElementById("result");
         var output = document.getElementById("showUploaded");
 
