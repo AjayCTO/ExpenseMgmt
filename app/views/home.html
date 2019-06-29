@@ -141,7 +141,6 @@
         </div>
 
 
-    <div class="separator-breadcrumb"></div>
 
         <div class="row">
             <div class="col-md-12" style="margin-bottom:15px" ng-if="ListOfExpenses.length>0">
@@ -150,33 +149,43 @@
               
                         <h4 class="card-title "><b>Last 5 Expenses</b></h4>
                     </div>
-                <hr />
-                                    
-                            <div ng-repeat="obj in ListOfExpenses">
-                                <div class="row" style="margin-bottom:10px">
-                                    <div>
-                                        <a ng-click="makezoom(obj.receiptPath)">
-                                            <img style="cursor:pointer;width: 50px; height: 50px; border: 1px solid #ccc; border-radius: 100% !important;" ng-if="obj.receiptPath!=''" class="avatar-lg mb-3 mb-sm-0 rounded mr-sm-3" src="{{obj.receiptPath}}" alt="">
-                                        </a>
-                                        <a>
-                                            <img ng-if="obj.receiptPath==''" style="width: 50px; height: 50px; border: 1px solid #ccc; border-radius: 100% !important;" src="https://static.thenounproject.com/png/220984-200.png" class="avatar-lg mb-3 mb-sm-0 rounded mr-sm-3" alt="Alternate Text" />
+                  <hr />
+         
+                    <div ng-repeat="obj in ListOfExpenses">
+                        <div class="row">
+                      
+                        <div class="col-3 col-md-3 text-center">
+                            <a ng-click="makezoom(obj.receiptPath)">
+                                <img style="cursor:pointer;width: 50px; height: 50px; border: 1px solid #ccc; border-radius: 100% !important;" ng-if="obj.receiptPath!=''" class="avatar-lg mb-3 mb-sm-0 rounded mr-sm-3" src="{{obj.receiptPath}}" alt="">
+                            </a>
+                            <a>
+                                <img ng-if="obj.receiptPath==''" style="height: 50px; width: 50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" alt="Alternate Text" />
 
-                                        </a>
-                                    </div>
-                                    <div class="col-8 flex-grow-1">
-                                        <h5 class=""><a href="">{{obj.description}}</a></h5>
-                                        <h5 class=""><a href="">{{obj.projectName}}</a></h5>
-                                        <p class="text-small text-danger m-0">&#x20b9;{{obj.totalAmount}}</p>
-                                    </div>
-                                    <div class="col-1">
-                                        <a href="" style="padding-left: 6px;"ng-click="openExpensePage(obj.totalAmount)"
-                                           class="btn btn-outline-primary btn-rounded btn-sm">
-                                            View
-                                        </a>
-                                    </div>
-                                </div>  
-                                                 
+                            </a>
                         </div>
+                        <div class="col-9 col-md-9 section-box">                          
+                            <h5>
+                                <strong><b>{{obj.projectName}}</b></strong>
+                            </h5>
+                            <h5 class="">{{obj.description}}</h5>
+                          <span><strong>Amount- </strong></span>  <span class="text-small text-danger m-0">&#x20b9;{{obj.totalAmount}}</span>
+                            <h5>By {{obj.supplierName}}</h5>
+                        </div>
+                            <a href="" style="padding-left: 6px; position: absolute; right: 15px;" ng-click="openExpensePage(obj.totalAmount)"
+                               class="btn btn-outline-primary btn-rounded btn-sm">
+                                View Details
+                            </a>
+                         </div>
+                        <hr/>
+                        <!--<div class="col-1">
+                <a href="" style="padding-left: 6px;"ng-click="openExpensePage(obj.totalAmount)"
+                   class="btn btn-outline-primary btn-rounded btn-sm">
+                    View
+                </a>
+            </div>-->
+                    </div>
+
+            
                    
             
             </div>
@@ -194,8 +203,8 @@
                 <hr />
 
                         <div ng-repeat="obj in ListOfIncomings">
-                            <div class="row" style="margin-bottom:10px">
-                                <div>
+                            <div class="row">
+                                <div class="col-3 col-md-3 text-center">
                                     <a ng-click="makezoom(obj.receiptPath)">
                                         <img style="width: 50px; height: 50px; border: 1px solid #ccc; border-radius: 100% !important;" ng-if="obj.receiptPath !=''" class="avatar-lg mb-3 mb-sm-0 rounded mr-sm-3" src="{{obj.receiptPath}}" alt="">
                                     </a>
@@ -204,23 +213,27 @@
 
                                     </a>
                                 </div>
-                                <div class="col-8  flex-grow-1">
-                                    <h5 class=""><a href="">{{obj.sourceName}}</a></h5>
+                                <div class="col-9 col-md-9 section-box">                               
+                                    <h5>
+                                        <strong><b>{{obj.sourceName}}</b></strong>
+                                    </h5>
                                     <p class="m-0 text-small text-muted">{{obj.description}}</p>
                                     <p class="text-small text-danger m-0">&#x20b9;{{obj.amount}} </p>
                                 </div>
-                                <div class="col-1">
-                                    <a href="" style="padding-left: 6px;" ng-click="openIncomingPage(obj.sourceName)"
-                                       class="btn btn-outline-primary btn-rounded btn-sm">
-                                        View
+                          
+                                    <a href="" style="padding-left: 6px; position: absolute; right: 15px;" ng-click="openIncomingPage(obj.sourceName)"
+                                       class="btn btn-outline-primary btn-rounded btn-sm ">
+                                        View Details
                                     </a>
+                            
                                 </div>
+                                 <hr/>
                             </div>
                     </div>
      
         </div>
 
-        </div>
+    
         
 
 
@@ -301,7 +314,7 @@
             </table>
 
         </div>-->
-    </div>
+   
 
 
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle-2" aria-hidden="true">

@@ -79,11 +79,11 @@
   border-left-color: #4e4a4a;
   border-radius: 100%;
 
-  -webkit-animation: loading-bar-spinner 1500ms linear infinite;
-  -moz-animation:    loading-bar-spinner 1500ms linear infinite;
-  -ms-animation:     loading-bar-spinner 1500ms linear infinite;
-  -o-animation:      loading-bar-spinner 1500ms linear infinite;
-  animation:         loading-bar-spinner 1500ms linear infinite;
+  -webkit-animation: loading-bar-spinner 1200ms linear infinite;
+  -moz-animation:    loading-bar-spinner 1200ms linear infinite;
+  -ms-animation:     loading-bar-spinner 1200ms linear infinite;
+  -o-animation:      loading-bar-spinner 1200ms linear infinite;
+  animation:         loading-bar-spinner 1200ms linear infinite;
 }
 
 @-webkit-keyframes loading-bar-spinner {

@@ -123,6 +123,50 @@
             <td></td>
         </tr>
     </table>-->
+    <div class="separator-breadcrumb text-center" ng-if="ListOfExpenses.length>0">
+        <h4><b>Total Amount-</b>{{total}}</h4>
+        <hr />
+    </div>
+
+    <div ng-repeat="obj in ListOfExpenses |orderBy:sortKey:reverse|filter:search">
+      
+        <div class="row">
+            <div class="col-3 col-md-3 text-center">
+
+                <img ng-if="obj.receiptPath==''" style="height: 50px; width: 50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" />
+                <a data-ng-click="makezoom(obj.receiptPath)">
+                    <img ng-if="obj.receiptPath!=''" src="{{obj.receiptPath}}" alt="Alternate Text" style="width: 50px; height: 50px;  border: 1px solid #ccc; border-radius: 100% !important;" />
+                </a>
+                <!--<img src="https://image.flaticon.com/icons/png/128/149/149071.png" alt="" class="img-rounded img-responsive">-->
+            </div>
+            <div class="col-9 col-md-9 section-box">
+                   <h5>
+                    <strong><b>{{obj.projectName}}</b></strong>
+                </h5>
+                <div>
+                    <span>{{obj.description}}</span>
+                </div>
+                <div>
+                    <span>
+                        <strong>Assest-</strong> {{obj.assetName}}
+                    </span>
+                     <span>
+                        <strong>Amount-</strong>&#x20b9;{{obj.totalAmount}}
+                    </span>
+
+                </div>
+            
+                <div>
+                    <span>
+                        <strong>Supplier-</strong>{{obj.supplierName}}
+                    </span>
+
+                </div>
+
+            </div>
+        </div>
+        <hr />
+    </div>
 </div>
 
 

@@ -3,6 +3,7 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
 
     $scope.isEditing = false;
     $scope.search = "";
+    $scope.Page = "Incoming";
     if (localStorageService.get('searchIncoming') != '' && localStorageService.get('searchIncoming') != null && localStorageService.get('searchIncoming') != undefined)
     {
         $scope.search = localStorageService.get('searchIncoming').name;
@@ -75,7 +76,7 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
     }
 
     $scope.openEditModal = function (obj) {
-
+        $scope.Page = "Edit Incoming";
         //$scope.search = "";
         localStorageService.remove('searchExpense');
         localStorageService.remove('searchIncoming');
@@ -141,6 +142,7 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
     $scope.showlistofincomings = function () {
         $scope.isEditing = false;
         $scope.showlist = true;
+        $scope.Page = "Incoming";
     }
 
 
@@ -149,7 +151,7 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
         $scope.search = "";
         localStorageService.remove('searchExpense');
         localStorageService.remove('searchIncoming');
-
+        $scope.Page = "Add New Incoming";
         $scope.Incoming = {
             IncomingID: null,
             customerID :0,
@@ -195,6 +197,7 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
             $scope.getIncomingsByProjectID($scope.projectID);
             $scope.isEditing = false;
             $scope.showlist = true;
+            $scope.Page = "Incoming";
         },
          function (response) {
              var errors = [];
@@ -218,6 +221,7 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
             $scope.getIncomingsByProjectID($scope.projectID);
             $scope.isEditing = false;
             $scope.showlist = true;
+            $scope.Page = "Incoming";
         },
          function (response) {
              var errors = [];
