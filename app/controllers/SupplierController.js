@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageService', function ($scope, ordersService, localStorageService) {
-
+    showLoader();
     localStorageService.remove('searchExpense');
     localStorageService.remove('searchIncoming');
     $scope.Page = "Suppliers";
@@ -79,7 +79,7 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
 
 
     $scope.openEditModal = function (obj) {      
-        debugger;
+
         $scope.Page = "Edit Supplier";
         $scope.projectID = obj.projectID;
 
@@ -109,12 +109,14 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
         }, function (error) {
         });
     }  
-
+   
 
     ordersService.getProjects($scope.userName).then(function (results) {
-        debugger;
+      
+        hideLoader();
         $scope.ListOfProjects = results.data;
     }, function (error) {
+    
     });
 
 
@@ -135,14 +137,14 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
         $scope.projectID = id;
 
         ordersService.getSupplierByID($scope.userName).then(function (results) {
-            debugger;
+           
             $scope.ListOfSupplier = results.data;
         }, function (error) {
         });
     }
 
     ordersService.getSupplierByID($scope.userName).then(function (results) {
-        debugger;
+      
         $scope.projectID;
         $scope.ListOfSupplier = results.data;
     }, function (error) {
@@ -152,7 +154,7 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
     
 
     $scope.saveSupplier = function () {
-        debugger;
+       
         $scope.Supplier.projectID = $scope.projectID;
        
 

@@ -1,6 +1,7 @@
 ﻿'use strict';
 app.controller('homeController', ['$scope', 'ordersService', 'localStorageService', function ($scope, ordersService, localStorageService) {
 
+    showLoader();
     localStorageService.remove('searchExpense');
     localStorageService.remove('searchIncoming');
 
@@ -53,7 +54,7 @@ app.controller('homeController', ['$scope', 'ordersService', 'localStorageServic
         ordersService.getIncomingByProjectID(id).then(function (results) {
 
             $scope.ListOfIncomings = results.data;
-
+            hideLoader();
 
         }, function (error) {
 

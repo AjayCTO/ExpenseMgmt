@@ -31,9 +31,9 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
     $scope.message = "";
 
     $scope.login = function () {
-
+        showLoader();
         authService.login($scope.loginData).then(function (response) {
-
+            hideLoader();
             console.log("==================Login Controller=====================")
             console.log(response)
             console.log("==================Login Controller=====================")
@@ -41,6 +41,7 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
 
         },
          function (err) {
+             hideLoader();
              $scope.message = err.error_description;
          });
     };

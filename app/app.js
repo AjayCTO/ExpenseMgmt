@@ -1,5 +1,5 @@
 ﻿
-var app = angular.module('AngularAuthApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar']);
+var app = angular.module('AngularAuthApp', ['ngRoute', 'LocalStorageModule']);
 
 app.config(function ($routeProvider) {
 
@@ -102,6 +102,26 @@ app.run(['authService', function (authService) {
     authService.fillAuthData();
 }]);
 
+showLoader = function () {
+    new fn_common().loader.start({
+        ob: $('body'),
+        position: 'fixed',
+        height: '100%',
+        text: "",
+        left: "50%",
+        textbackcolor: 'transparent',
+        textbrad: '12px',
+        zindex: $('body').css('z-index') + 1,
+        height: "100%",
+        width: "100%"
+    });
+};
+
+hideLoader = function () {
+    new fn_common().loader.hide({
+        ob: $('body')
+    });
+};
 
 // factory for all messages 
 app.factory('log', function () {

@@ -22,16 +22,16 @@ app.controller('signupController', ['$scope', '$location', '$timeout', 'authServ
     });
 
     $scope.signUp = function () {
-
+        showLoader();
         authService.saveRegistration($scope.registration).then(function (response) {
-
+          hideLoader();
             $scope.savedSuccessfully = true;
             $scope.message = "User has been registered successfully, you will be redicted to login page in 2 seconds.";
             startTimer();
 
         },
          function (response) {
-
+         
              console.log(response);
              var errors = [];
              for (var key in response.data.modelState) {
@@ -39,6 +39,7 @@ app.controller('signupController', ['$scope', '$location', '$timeout', 'authServ
                      errors.push(response.data.modelState[key][i]);
                  }
              }
+             hideLoader();
              $scope.message = "Failed to register user due to:" + errors.join(' ');
          });
     };

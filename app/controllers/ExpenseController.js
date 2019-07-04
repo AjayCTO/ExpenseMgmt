@@ -466,11 +466,11 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
 
     $scope.updateExpense = function () {
-        debugger;
+       
         $scope.Expense.ProjectID = $scope.projectID;
 
         ordersService.updateExpense($scope.Expense, $scope.userName).then(function (response) {
-            debugger;
+         
             $scope.Page = "Expense";
             $scope.savedSuccessfully = true;
             $scope.message = "Expense has been updated successfully";

@@ -50,6 +50,9 @@
             padding: 10px;
         }
 
+        .ezmasker {
+            /*background-color: transparent !important;*/
+        }
 
         .dataTables_paginate .previous {
             background: #ccc;
@@ -451,7 +454,49 @@
     <script src="JS/customizer.script.min.js"></script>
 
     <script src="scripts/sweetalert.js"></script>
+    <script>
+        function fn_common() {         
+            funthis = this;
+            this.loader = {
+                start: function (setting) {
+                    setting.ob.find('.ezmasker').remove();
+                    var div = $('<div></div>')
+                    .css({
+                        'height': setting.height,
+                        'width': setting.width,
+                        'position': (!!setting.position) ? setting.position : 'absolute',
+                        'background-color': '#FFFFFF',
+                        'filter': 'alpha(opacity=20)',
+                        'opacity': (!!setting.opacity) ? setting.opacity : '0.6',
+                        'text-align': 'center',
+                        'z-index': '20000000'
+                    })
+                    .append('<span style=" position: absolute; text-align: center; color: white;background: ' + (!!setting.textbackcolor ?
+                    setting.textbackcolor : 'transparent') + ' ;' +
+                    ' padding-left: 7px; border-right-width: 12px; padding-right: 9px; border-bottom-width: 0px; padding-bottom: 3px;transform: translate(-50%,-50%); ;color: white;'
+                    + ' top: 50%;left:50%;border-radius:' + (!!setting.textbrad ? setting.textbrad : '0px') + ';">' + ((setting.requireloader == undefined) ?
+                     ('<img style="margin-right: 3px;top:44%; width:70px" src="/Images/LoadingSpinner2.GIF">')
+                      : ((setting.requireloader == undefined) ? '<img style="margin-right: 3px;top:44%; width:70px" src="/Images/LoadingSpinner2.GIF">'
+                      : '')) + '<br /><span style="color:black">' + setting.text + '</span></span>')
+                    .addClass('ezmasker')
+                     .prependTo(setting.ob);
+                    if (!!setting.ctop) {
+                        div.css({
+                            top: setting.ctop
+                        });
+                    }
+                    return funthis;
+                },
+                hide: function (setting) {
+                    setting.ob.find('.ezmasker').fadeOut('slow', function () {
+                        $(this).remove();
+                    });
+                    return funthis;
+                }
+            }
+        }
 
+    </script>
     <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>-->
 
