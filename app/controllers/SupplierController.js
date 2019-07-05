@@ -12,7 +12,15 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
     }
 
 
-
+    $scope.showsearchbar = false;
+    $scope.Searchiconshow = function () {
+        if ($scope.showsearchbar == false) {
+            $scope.showsearchbar = true;
+        }
+        else {
+            $scope.showsearchbar = false;
+        }
+    }
     $scope.Supplier = {
         SupplierID:"",
         Name: "",
@@ -21,7 +29,8 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
         AmountPaid: "",
         Category: "",
         TotalAmount: "",
-        ProjectID:0
+        ProjectID: 0,
+        UserId:"",
     };
 
     $scope.savedSuccessfully = false;
@@ -70,7 +79,8 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
             AmountPaid: "",
             Category: "",
             TotalAmount: "",
-            ProjectID: 0
+            ProjectID: 0,
+            UserId:""
         };
 
         $scope.showlist = false;
@@ -79,7 +89,7 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
 
 
     $scope.openEditModal = function (obj) {      
-
+        debugger;
         $scope.Page = "Edit Supplier";
         $scope.projectID = obj.projectID;
 
@@ -90,9 +100,9 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
             Contact: obj.contact,
             AmountPaid: obj.amountPaid,
             Category: obj.category,
-            TotalAmount: obj.totalAmount,
-            ProjectID: obj.projectID,
-            CategoryID: obj.categoryID
+            TotalAmount: obj.totalAmount,    
+            CategoryID: obj.categoryID,
+            UserId:obj.userId
     };
 
 
@@ -144,8 +154,7 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
     }
 
     ordersService.getSupplierByID($scope.userName).then(function (results) {
-      
-        $scope.projectID;
+        debugger;      
         $scope.ListOfSupplier = results.data;
     }, function (error) {
     });
@@ -154,14 +163,15 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
     
 
     $scope.saveSupplier = function () {
-       
-        $scope.Supplier.projectID = $scope.projectID;
+        debugger;
+        showLoader();
+        $scope.Supplier.UserId = $scope.userName;
        
 
 
        
-        ordersService.saveSupplier($scope.Supplier, $scope.projectID, $scope.userName).then(function (response) { 
-
+        ordersService.saveSupplier($scope.Supplier,$scope.userName).then(function (response) { 
+            hideLoader();
             $scope.savedSuccessfully = true;
             $scope.message = "Supplier has been added successfully";
 
@@ -184,9 +194,9 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
 
 
     $scope.updateSupplier = function () {
-
-        $scope.Supplier.projectID = $scope.projectID;
-
+        showLoader();
+        //$scope.Supplier.projectID = $scope.projectID;
+        debugger;
         ordersService.updateSupplier($scope.Supplier).then(function (response) {
 
             $scope.savedSuccessfully = true;
@@ -196,6 +206,7 @@ app.controller('SupplierController', ['$scope', 'ordersService', 'localStorageSe
             $scope.showlist = true;
             $scope.isEditing = false;
             $scope.Page = "Suppliers";
+          hideLoader();
         },
          function (response) {
              var errors = [];

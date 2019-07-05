@@ -16,7 +16,7 @@ app.factory('ordersService', ['$http', 'ngAuthSettings', function ($http, ngAuth
 
     var _getProjects = function (userName) {
 
-        debugger;
+        
         return $http.get(serviceBase + 'api/Projects/GetProjects', { params: { userName: userName } }).then(function (results) {
 
             return results;
@@ -312,9 +312,9 @@ app.factory('ordersService', ['$http', 'ngAuthSettings', function ($http, ngAuth
     };
 
 
-    var _saveSupplier = function (Supplier, projectID, userName) {      
+    var _saveSupplier = function (Supplier,userName) {      
 
-        var supplierProjectModel = {Supplier : Supplier, projectId : projectID, UserName : userName}
+        var supplierProjectModel = {Supplier:Supplier,UserName:userName}
 
 
         return $http.post(serviceBase + 'api/Suppliers/PostSupplier', supplierProjectModel).then(function (response) {

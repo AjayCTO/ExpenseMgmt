@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'localStorageService', 'SweetAlert', function ($scope, $rootScope, ordersService, localStorageService, SweetAlert) {
-    
+    showLoader();
     $scope.search = "";
     $scope.Page="Expense"
     if (localStorageService.get('searchExpense') != '' && localStorageService.get('searchExpense') != null && localStorageService.get('searchExpense') != undefined) {
@@ -30,11 +30,12 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
         CategoryID: null,
         SupplierID:null,
         Date: "",
-        Amount: "",
+        Amount: 0,
         Refrence: "",
         ReceiptPath: "",
         IsApproved: "",
-        Description: "" 
+        Description: "",
+        PaidAmount: 0
     };
 
     $scope.Categoryobject = {
@@ -121,7 +122,8 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
             Refrence: "",
             ReceiptPath: "",
             IsApproved: "",
-            Description: ""
+            Description: "",
+            AmountPaid:""
         };
 
 
@@ -155,10 +157,11 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
 
     ordersService.getExpenseByProjectID($scope.projectID).then(function (results) {
-
+        debugger;
         $scope.ListOfExpenses = results.data;
+        hideLoader();
+        //$scope.getdatabyid($scope.projectID);
 
-        $scope.getdatabyid($scope.projectID);
 
     }, function (error) {
 
@@ -225,7 +228,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
     $scope.saveNewCategory = function () {
 
-    
+      
        
         ordersService.saveCategory($scope.Categoryobject).then(function (response) {
 
@@ -423,6 +426,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
     
 
     $scope.getExpenseByID = function (id) {
+        debugger;
         ordersService.getExpenseByID(id).then(function (results) {
             $scope.Expense = results.data;
 
@@ -436,8 +440,8 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
     
 
     $scope.saveExpense = function () {
-      
-       
+        showLoader();
+        debugger;
         $scope.Expense.ProjectID = $scope.projectID;
             
 
@@ -450,8 +454,8 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
             $scope.Page = "Expense";
             $scope.isEditing = false;
 
-            swal("Expense Added Successfully !!", "", "success")
-
+            //swal("Expense Added Successfully !!", "", "success")
+          hideLoader();
         },
          function (error) {
              var errors = [];
@@ -466,7 +470,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
 
     $scope.updateExpense = function () {
-       
+        showLoader();
         $scope.Expense.ProjectID = $scope.projectID;
 
         ordersService.updateExpense($scope.Expense, $scope.userName).then(function (response) {
@@ -478,6 +482,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
             $scope.showlist = true;
             $scope.isEditing = false;
             //swal("Expense Updated Successfully !!", "", "info")
+            hideLoader();
         },
          function (response) {
              var errors = [];

@@ -1,5 +1,6 @@
 ﻿'use strict';
 app.controller('incomingController', ['$scope', 'ordersService', 'localStorageService', function ($scope, ordersService, localStorageService) {
+    showLoader();
     $scope.filelenght = 0;
     $scope.isEditing = false;
     $scope.search = "";
@@ -27,7 +28,7 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
 
         
             $scope.ListOfcustomer = results.data;
-
+            console.log(ListOfcustomer);
         }, function (error) {
         });
     }
@@ -76,7 +77,9 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
       
     }
 
-    $scope.openEditModal = function (obj) {
+    $scope.openEditModal = function (obj)
+    {
+        debugger;
         $scope.Page = "Edit Incoming";
         //$scope.search = "";
         localStorageService.remove('searchExpense');
@@ -88,7 +91,8 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
             Date: obj.date,
             Amount: obj.amount,
             SourceName: obj.sourceName,
-            ReceiptPath: obj.receiptPath
+            ReceiptPath: obj.receiptPath,
+            customerID: obj.customerID
         };
         $scope.isEditing = true;
         $scope.showlist = false;
@@ -96,12 +100,11 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
 
 
     ordersService.getIncomingByProjectID($scope.projectID).then(function (results) {
-
+        debugger;
         $scope.ListOfIncoming = results.data;
 
-        console.log("lit of incoming");
-        console.log($scope.ListOfIncoming);
 
+        hideLoader();
 
     }, function (error) {
         //alert(error.data.message);
@@ -185,7 +188,7 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
     }
 
     $scope.saveIncoming = function () {
-
+        debugger;
         $scope.Incoming.projectID = $scope.projectID;
 
 

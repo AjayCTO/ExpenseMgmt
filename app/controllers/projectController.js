@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('projectController', ['$scope', 'ordersService', 'localStorageService', function ($scope, ordersService, localStorageService) {
-
+    showLoader();
     $scope.userName = localStorageService.get('authorizationData').userName;
     $scope.Page = "Projects";
     localStorageService.remove('searchExpense');
@@ -39,6 +39,7 @@ app.controller('projectController', ['$scope', 'ordersService', 'localStorageSer
             {
                 localStorageService.set('projectID', { projectID: $scope.ListOfProjects[0].projectID });
             }
+          
         }, function (error) {
         });
     }
@@ -129,7 +130,7 @@ app.controller('projectController', ['$scope', 'ordersService', 'localStorageSer
         $scope.ListOfcustomer = results.data;
 
         console.log($scope.ListOfcustomer);
-
+        hideLoader();
     }, function (error) {
     });
 
@@ -143,7 +144,7 @@ app.controller('projectController', ['$scope', 'ordersService', 'localStorageSer
         ordersService.getProjectByID(id).then(function (results) {
 
             $scope.project = results.data;
-           
+      
         }, function (error) {
             //alert(error.data.message);
         });

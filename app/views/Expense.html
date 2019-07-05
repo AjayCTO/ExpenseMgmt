@@ -147,6 +147,10 @@
                     <span>{{obj.description}}</span>
                 </div>
                 <div>
+                    <!--{{ date_expression | date : format : timezone}}-->
+                    <span> <strong>Date:-</strong>{{obj.date | date:'medium'}}</span>
+                </div>
+                <div>
                     <span>
                         <strong>Assest-</strong> {{obj.assetName}}
                     </span>
@@ -219,10 +223,10 @@
              
 
                 
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label>IsApproved</label>
                             <input type="text" class="form-control" placeholder="IsApproved" data-ng-model="Expense.IsApproved">
-                        </div>
+                        </div>-->
            
 
 
@@ -238,7 +242,7 @@
                 </div>
 
              
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label> Select Category  <a data-ng-click="newcategory()" style="cursor: pointer; float: right;color:white" class="btn btn-success btn-sm">Add New</a></label>
 
                             <select class="form-control" data-ng-model="Expense.CategoryID">
@@ -246,7 +250,7 @@
                                 <option data-ng-repeat="cat in categories" value="{{cat.categoryID}}" ng-selected="cat.categoryID == Expense.CategoryID">{{cat.name}}</option>
                             </select>
 
-                            </div>
+                            </div>-->
              
 
                         <div class="form-group">
@@ -254,8 +258,12 @@
                             <textarea type="text" class="form-control" placeholder="Description" data-ng-model="Expense.Description" required></textarea>
                         </div>
                 <div class="form-group">
-                    <label>Amount</label>
+                    <label>Total Amount</label>
                     <input type="number" class="form-control" placeholder="Amount" data-ng-model="Expense.Amount" required>
+                </div>
+                <div class="form-group">
+                    <label>Paid Amount</label>
+                    <input type="number" class="form-control" placeholder="Amount" data-ng-model="Expense.PaidAmount" required>
                 </div>
 
                 
@@ -278,8 +286,8 @@
                 <div class="form-group">
 
 
-                    <button ng-disabled="(projectID == '' || projectID == null) || (Expense.AssetID == '' || Expense.AssetID == null) || (Expense.CategoryID == '' || Expense.CategoryID == null) || (Expense.Amount == '' || Expense.Amount == null)" ng-if="isEditing == false" class="btn btn-primary btn-block checkoutbtn2" type="submit" data-ng-click="saveExpense()"><i class="fa fa-check"></i> Save</button>
-                    <button ng-disabled="(projectID == '' || projectID == null) || (Expense.AssetID == '' || Expense.AssetID == null) || (Expense.CategoryID == '' || Expense.CategoryID == null) || (Expense.Amount == '' || Expense.Amount == null)" ng-if="isEditing == true" class="btn btn-primary btn-block" type="submit" data-ng-click="updateExpense()"><i class="fa fa-check"></i> Update</button>
+                    <button ng-disabled="(projectID == '' || projectID == null) || (Expense.AssetID == '' || Expense.AssetID == null)  || (Expense.Amount == '' || Expense.Amount == null) || (Expense.PaidAmount == '' || Expense.PaidAmount == null) " ng-if="isEditing==false" class="btn btn-primary btn-block checkoutbtn2" type="submit" data-ng-click="saveExpense()"><i class="fa fa-check"></i> Save</button>
+                    <button ng-disabled="(projectID == '' || projectID == null) || (Expense.AssetID == '' || Expense.AssetID == null)  || (Expense.Amount == '' || Expense.Amount == null)  ||(Expense.PaidAmount == '' || Expense.PaidAmount == null)" ng-if="isEditing == true" class="btn btn-primary btn-block" type="submit" data-ng-click="updateExpense()"><i class="fa fa-check"></i> Update</button>
                     <button type="button" data-ng-click="showexpenselist()" class="btn btn-dark btn-block"><i class="fa fa-times"></i> Cancel</button>
                 </div>
 

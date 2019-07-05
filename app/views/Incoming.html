@@ -116,7 +116,7 @@
     </table>-->
     <div ng-repeat="obj in ListOfIncoming|orderBy:sortKey:reverse|filter:search">
 
-        <div class="row">
+        <div class="row" ng-show="ListOfIncoming.length>0">
             <div class="col-3 col-md-3 text-center">
 
                 <img ng-if="obj.receiptPath==''" style="height: 50px; width: 50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" />
@@ -129,21 +129,39 @@
                 <button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1 EditBUtton"><i class="fa fa-pencil"></i></button>
 
                 <h5>
-                    <strong><b>{{obj.sourceName}}</b></strong><a href="" target="_blank">
-                        <span class="glyphicon glyphicon-new-window">
-                        </span>
-                    </a>
+                    <strong ng-repeat="cs in ListOfcustomer">
+                        <b ng-if="cs.customerID==obj.customerID">{{cs.name}}</b>
+
+                    </strong>
+
+                    <span class="glyphicon glyphicon-new-window">
+                    </span>
+
                 </h5>
+                <div>
+                    <div>
+                        <!--{{ date_expression | date : format : timezone}}-->
+                        <span> <strong>Date:-</strong> {{obj.date | date:'medium'}}</span>
+                    </div>
+                    <span>{{obj.sourceName}}</span>
+                    <div>
 
-                <span>
-                    <strong><b> Amount </b></strong>&#x20b9; {{obj.amount}}
-                </span>
 
+                        <span>
+                            <strong><b> Amount </b></strong>&#x20b9; {{obj.amount}}
+                        </span>
+                    </div>
+                </div>
 
 
             </div>
         </div>
         <hr />
+        <div class="row" ng-show="ListOfIncoming.length==0">
+            <div class="col-12 col-md-12 text-center">
+                <strong>Not Found</strong>
+            </div>
+        </div>
     </div>
 
 </div>
@@ -194,14 +212,14 @@
                 <label>Receipt</label>
                 <div class="dropzone" id="single-file-upload">
                     <div class="fallback">
-                        <input style="display:none" type="file" id="fileName"  name="fileName" value="" />
+                        <input style="display:none" type="file" id="fileName" name="fileName" value="" />
 
                         <img ng-if="Incoming.ReceiptPath!=''" ng-click="openfile()" alt="Choose Image" id="showUploaded" style="width: 89px; height: 90px; border: 1px solid #ccc; border-radius: 100% !important" src="{{Incoming.ReceiptPath}}" />
 
-                        
+
                         <img ng-if="Incoming.ReceiptPath==''" ng-click="openfile()" alt="Choose Image" id="showUploaded" style="width: 89px; height: 90px; border: 1px solid #ccc; border-radius: 100% !important; " src="https://static.thenounproject.com/png/220984-200.png" />
 
-                        <span ng-if="Incoming.ReceiptPath!=''" ng-click="removeImage()"> Remove</span>  
+                        <span ng-if="Incoming.ReceiptPath!=''" ng-click="removeImage()"> Remove</span>
 
                         <!--<img alt="Choose Image" id="showUploaded" style="width:89px;height:90px" src="{{Incoming.ReceiptPath}}" />-->
                         <!--<button ng-if="isEditing == true" ng-click="removeImage()">Update Image</button>-->

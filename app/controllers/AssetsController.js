@@ -144,12 +144,9 @@ app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageServ
 
 
     $scope.openEditModal = function (Asset) {
+        debugger;
         $scope.Page = "Edit Assets";
-        $scope.projectID = Asset.projectID;
-
-        console.log("open edit modal");
-        console.log(Asset);
-
+     
         $scope.Asset = {
             assetID: Asset.assetID,
             projectID: Asset.projectID,
@@ -157,7 +154,7 @@ app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageServ
             contact: Asset.contact,
             address: Asset.address,
             business: Asset.business,
-            userID: Asset.userID,
+            userID: Asset.userId,
             applicationUser_Id: Asset.applicationUser_Id
         };
 
@@ -168,8 +165,8 @@ app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageServ
 
 
     $scope.updateAsset = function () {
-
-        $scope.Asset.projectID = $scope.projectID;
+        debugger;
+        //$scope.Asset.projectID = $scope.projectID;
 
      
 

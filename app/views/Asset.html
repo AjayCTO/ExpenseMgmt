@@ -28,12 +28,12 @@
     <div class="row">
 
         <div style="text-align:center;" class="col-md-12">
-            <div class="form-group">
+            <!--<div class="form-group">
                 <h4>Select Project</h4>
                 <select ng-model="projectid" data-ng-change="getAssetsByProjectID(projectid)" style="margin-bottom:25px;" class="form-control">
                     <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
                 </select>
-            </div>
+            </div>-->
 
 
         </div>
@@ -119,6 +119,7 @@
 
         </tr>
     </table>-->
+    <hr/>
     <div ng-repeat="obj in ListOfAssets|orderBy:sortKey:reverse|filter:search">
 
         <div class="row">
@@ -139,14 +140,17 @@
                         </span>
                     </a>
                 </h5>
-                <div>
-                    <span> <strong><b>Address</b></strong> {{obj.address}}</span>
+                <div ng-if="obj.address!=''">
+                     <strong><b>Bringer's Address:-</b></strong> {{obj.address}}
                 </div>
-                <span>
-                    <strong><b>Mob:-</b></strong>{{obj.contact}}
-                </span>
+                <div ng-if="obj.contact!=''">
 
 
+                    <span>
+                        <strong><b>Bringer's Contact:-</b></strong> {{obj.contact}}
+                    </span>
+
+                </div>
 
             </div>
         </div>
@@ -159,39 +163,39 @@
     <div class="col-md-12">
         <form ng-if="showlist==false" class="form-login" role="form">
             <div class="form-group">
-                <label>Name</label>
+                <label>Assests Name</label>
                 <input type="text" class="form-control" placeholder="Name" data-ng-model="Asset.name" required autofocus>
             </div>
-
             <div class="form-group">
-                <label>Contact</label>
+                <label>Bringer's Address</label>
+                <textarea type="text" class="form-control" placeholder="Address" data-ng-model="Asset.address" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Bringer's Contact</label>
                 <input type="text" class="form-control" placeholder="Contact" data-ng-model="Asset.contact" required>
             </div>
 
-            <div class="form-group">
-                <label>Project Name</label>
+            <!--<div class="form-group">
+                <label>Project Name</label>-->
 
                 <!--<select ng-model="Asset.projectID" class="form-control">
                 <option selected value="">- Select Project -</option>
                 <option ng-repeat="pr in ListOfProjects" value="{{pr.ProjectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
             </select>-->
 
-                <select ng-model="projectid" data-ng-change="setProjectID(projectid)" style="margin-bottom:10px;" class="form-control">
+                <!--<select ng-model="projectid" data-ng-change="setProjectID(projectid)" style="margin-bottom:10px;" class="form-control">
                     <option selected value="">- Select Project -</option>
                     <option ng-repeat="pr in ListOfProjects" value="{{pr.projectID}}" ng-selected="pr.projectID == projectID">{{pr.name}}</option>
                 </select>
-            </div>
+            </div>-->
 
-            <div class="form-group">
-                <label>Address</label>
-                <input type="text" class="form-control" placeholder="Address" data-ng-model="Asset.address" required>
-            </div>
+      
 
 
 
 
-            <button ng-disabled="(projectID == '' || projectID == null) || (Asset.name == '' || Asset.name == null)" ng-if="isEditing == false" class="btn btn-primary btn-block" type="submit" data-ng-click="saveAsset()"><i class="fa fa-check"></i> Save</button>
-            <button ng-disabled="(projectID == '' || projectID == null) || (Asset.name == '' || Asset.name == null)" ng-if="isEditing == true" class="btn btn-primary btn-block" type="submit" data-ng-click="updateAsset()"><i class="fa fa-check"></i> Update</button>
+            <button ng-disabled="(Asset.name == '' || Asset.name == null)" ng-if="isEditing == false" class="btn btn-primary btn-block" type="submit" data-ng-click="saveAsset()"><i class="fa fa-check"></i> Save</button>
+            <button ng-disabled="(Asset.name == '' || Asset.name == null)" ng-if="isEditing == true" class="btn btn-primary btn-block" type="submit" data-ng-click="updateAsset()"><i class="fa fa-check"></i> Update</button>
             <button data-ng-click="showlistofassets()" type="button" class="btn btn-dark btn-block"><i class="fa fa-times"></i> Cancel</button>
 
         </form>

@@ -1,4 +1,13 @@
-﻿
+﻿<style>
+    .searchbtn {
+        width: 50px;
+        height: 50px;
+        border: 1px solid;
+        color: white;
+        background-color: #281a6f;
+        border-radius: 100% !important;
+    }
+</style>
 
 <nav class="float-action-button" ng-if="showlist==true">
 
@@ -32,7 +41,7 @@
             <button data-ng-click="addnewsupplier()" type="button" class="btn btn-success m-1"> <i class="fa fa-plus"></i> Add Supplier</button>
         </div>-->
 
-        <div style="text-align:center;" class="col-md-12">
+        <!--<div style="text-align:center;" class="col-md-12">
             <div class="form-group">
                 <h4>Select Project</h4>
                 <select ng-model="projectid" data-ng-change="getSuppliersByProjectID(projectid)" style="margin-bottom:25px;" class="form-control">
@@ -42,16 +51,19 @@
                 </select>
             </div>
        
-        </div>
+        </div>-->
         <div style="text-align:right" class="col-md-12">
             <div>
                 <div class="input-group">
-                    <input type="text" class="search-query form-control" placeholder="Type to Search" data-ng-model="search" name="name" value="" />
+                    <input type="text"  class="search-query form-control" placeholder="Type to Search" data-ng-model="search" name="name" value="" />
                     <!--<span class="input-group-btn">
                         <button class="btn btn-danger" type="button">
                             <span><i class="fa fa-search"></i></span>
                         </button>
                     </span>-->
+                    <!--<button ng-if="!showsearchbar" ng-click="Searchiconshow()" type="button" class="btn btn-sm m-1 searchbtn"><i class="fa fa-search"></i></button>-->
+
+
                 </div>
             </div>
 
@@ -62,7 +74,7 @@
         </div>-->
     </div>
 
-
+    <hr/>
     <div class="separator-breadcrumb"></div>
     <!--<button data-ng-click="addnewsupplier()" type="button" class="btn btn-success m-1"> <i class="fa fa-plus"></i> Add Supplier</button>-->
     <!--<div style="overflow-x:scroll">
@@ -134,14 +146,14 @@
     <div ng-repeat="obj in ListOfSupplier|orderBy:sortKey:reverse|filter:search">
 
         <div class="row">
-            <!--<div class="col-3 col-md-3 text-center">-->
-            <!--<img style="height: 50px; width: 50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" />-->
+            <!--<div class="col-3 col-md-3 text-center">
+            <img style="height: 50px; width: 50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" />-->
             <!--<a data-ng-click="makezoom(obj.receiptPath)">
                 <img ng-if="obj.receiptPath!=''" src="{{obj.receiptPath}}" alt="Alternate Text" style="width: 50px; height: 50px;  border: 1px solid #ccc; border-radius: 100% !important;" />
             </a>-->
             <!--<img src="https://image.flaticon.com/icons/png/128/149/149071.png" alt="" class="img-rounded img-responsive">-->
             <!--</div>-->
-            <div class="col-12 col-md-12 section-box">
+            <div class="col-12 col-md-12 section-box" >
                 <button ng-click="openEditModal(obj)" type="button" class="btn btn-primary btn-sm m-1 EditBUtton"><i class="fa fa-pencil"></i></button>
 
                 <h5>
@@ -151,21 +163,22 @@
                     </a>
                 </h5>
                 <div>
-                    <span>{{obj.address}} <strong>Mob:-</strong>{{obj.contact}}</span>
+                    <strong>Address:-</strong>  <span>{{obj.address}}</span>
                 </div>
+                <span> <strong>Mob:-</strong>{{obj.contact}}</span>
                 <div>
-                    <span>
-
+                    <span ng-if="obj.totalAmount!=null">
                         <strong>Total Amount- </strong> &#x20b9; {{obj.totalAmount}}
-                    </span>
-                    <span>
+                    </span>           
+                    <span ng-if="obj.amountPaid!=null">
                         <strong>Paid Amount-</strong> &#x20b9;  {{obj.amountPaid}}
                     </span>
                 </div>
+                <div ng-if="obj.totalAmount!=null">
                     <span>
                         <strong>Due Amount-</strong> &#x20b9; {{obj.totalAmount - obj.amountPaid}}
                     </span>
-              
+                </div>
 
 
             </div>
@@ -202,7 +215,7 @@
 <div class="row">
     <div class="col-md-12">
         <form ng-if="showlist==false" class="form-login" role="form">
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label>Project Name </label>
                 <select ng-change="getdatabyid(Supplier.ProjectID)" ng-model="Supplier.ProjectID" class="form-control">
                     <option selected value="">- Select Project -</option>
@@ -210,7 +223,7 @@
                 </select>
 
 
-            </div>
+            </div>-->
 
 
             <div class="form-group">
@@ -239,20 +252,20 @@
 
             </div>-->
 
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label>Total Amount</label>
-                <input type="number" class="form-control" placeholder="Total Cost" data-ng-model="Supplier.TotalAmount" required>
+                <input type="number" class="form-control" placeholder="Total Cost" data-ng-model="Supplier.TotalAmount">
             </div>
 
             <div class="form-group">
                 <label>Amount Paid</label>
-                <input type="number" class="form-control" placeholder="Total Cost" data-ng-model="Supplier.AmountPaid" required>
-            </div>
+                <input type="number" class="form-control" placeholder="Total Cost" data-ng-model="Supplier.AmountPaid">
+            </div>-->
 
 
             <div class="form-group">
-                <button ng-disabled="(projectID == '' || projectID == null) || (Supplier.Name == '' || Supplier.Name == null)" ng-if="isEditing == false" class="btn btn-primary btn-block" type="submit" data-ng-click="saveSupplier()"> <i class="fa fa-check"></i> Save</button>
-                <button ng-disabled="(projectID == '' || projectID == null) || (Supplier.Name == '' || Supplier.Name == null)" ng-if="isEditing == true" class="btn btn-primary btn-block" type="submit" data-ng-click="updateSupplier()"> <i class="fa fa-check"></i> Update</button>
+                <button ng-disabled="Supplier.Name == '' || Supplier.Name == null)" ng-if="isEditing == false" class="btn btn-primary btn-block" type="submit" data-ng-click="saveSupplier()"> <i class="fa fa-check"></i> Save</button>
+                <button ng-disabled="(Supplier.Name == '' || Supplier.Name == null)" ng-if="isEditing == true" class="btn btn-primary btn-block" type="submit" data-ng-click="updateSupplier()"> <i class="fa fa-check"></i> Update</button>
 
             </div>
             <div>
