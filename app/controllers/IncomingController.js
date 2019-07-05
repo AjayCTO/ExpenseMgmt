@@ -188,6 +188,7 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
     }
 
     $scope.saveIncoming = function () {
+        showLoader();
         debugger;
         $scope.Incoming.projectID = $scope.projectID;
 
@@ -206,6 +207,7 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
             $scope.isEditing = false;
             $scope.showlist = true;
             $scope.Page = "Incoming";
+            hideLoader();
         },
          function (response) {
              var errors = [];
@@ -215,11 +217,13 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
                  }
              }
              $scope.message = "Failed to add Incoming due to:" + errors.join(' ');
+             hideLoader();
          });
     };
 
 
     $scope.updateIncoming = function () {
+        showLoader();
         $scope.Incoming.projectID = $scope.projectID;
         ordersService.updateIncoming($scope.Incoming).then(function (response) {
 
@@ -230,6 +234,7 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
             $scope.isEditing = false;
             $scope.showlist = true;
             $scope.Page = "Incoming";
+            hideLoader();
         },
          function (response) {
              var errors = [];
@@ -239,6 +244,7 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
                  }
              }
              $scope.message = "Failed to update Incoming due to:" + errors.join(' ');
+             hideLoader();
          });
     };
 

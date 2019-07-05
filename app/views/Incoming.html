@@ -229,8 +229,8 @@
 
 
             <div class="form-group">
-                <button ng-disabled="(projectID == '' || projectID == null) || (Incoming.SourceName == '' || Incoming.SourceName == null)" ng-if="isEditing == false" class="btn btn-primary btn-block" type="submit" data-ng-click="saveIncoming()"> <i class="fa fa-check"></i> Save</button>
-                <button ng-disabled="(projectID == '' || projectID == null) || (Incoming.SourceName == '' || Incoming.SourceName == null)" ng-if="isEditing == true" class="btn btn-primary btn-block" type="submit" data-ng-click="updateIncoming()"> <i class="fa fa-check"></i> Update</button>
+                <button ng-disabled="(projectID == '' || projectID == null) || (Incoming.SourceName == '' || Incoming.SourceName == null) || (Incoming.customerID == '' || Incoming.customerID == null)" ng-if="isEditing == false" class="btn btn-primary btn-block" type="submit" data-ng-click="saveIncoming()"> <i class="fa fa-check"></i> Save</button>
+                <button ng-disabled="(projectID == '' || projectID == null) || (Incoming.SourceName == '' || Incoming.SourceName == null) || (Incoming.customerID == '' || Incoming.customerID == null)" ng-if="isEditing == true" class="btn btn-primary btn-block" type="submit" data-ng-click="updateIncoming()"> <i class="fa fa-check"></i> Update</button>
                 <button data-ng-click="showlistofincomings()" type="button" class="btn btn-dark btn-block"><i class="fa fa-times"></i> Cancel</button>
 
             </div>
