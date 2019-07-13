@@ -452,10 +452,20 @@
     <script src="JS/script.min.js"></script>
     <script src="JS/sidebar.large.script.min.js"></script>
     <script src="JS/customizer.script.min.js"></script>
-
+    <script type="text/javascript" src="cordova.js"></script>
     <script src="scripts/sweetalert.js"></script>
     <script>
         document.addEventListener("deviceready", onDeviceReady, false);
+        var pictureSource;
+        var destinationType;
+
+        function onDeviceReady() {
+            alert("1")
+
+            pictureSource = navigator.camera.PictureSourceType;
+            destinationType = navigator.camera.DestinationType;
+            alert("2")
+        }
     </script>
     <script>
         function fn_common() {         
