@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageService', function ($scope, ordersService, localStorageService) {
-
+    showLoader();
     $scope.userName = localStorageService.get('authorizationData').userName;
     $scope.Page = "Assets";
     localStorageService.remove('searchExpense');
@@ -50,30 +50,27 @@ app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageServ
         $scope.isEditing = false;
     }
 
-    $scope.setProjectID = function (id) {
+    //$scope.setProjectID = function (id) {
        
-
-        $scope.projectID = id;
+    //    $scope.projectID = id;
       
-    }
+    //}
 
-    $scope.getAssetsByProjectID = function (id) {
+    //$scope.getAssetsByProjectID = function (id) {
+   
+    //    ordersService.getAssetsByProjectID($scope.userName).then(function (results) {
+    //        $scope.ListOfAssets = results.data;
 
-        $scope.projectID = id;
-
-        ordersService.getAssetsByProjectID($scope.userName).then(function (results) {
-            $scope.ListOfAssets = results.data;
-
-        }, function (error) {
-            //alert(error.data.message);
-        });
-    }
+    //    }, function (error) {
+    //        //alert(error.data.message);
+    //    });
+    //}
 
 
 
     ordersService.getAssetsByProjectID($scope.userName).then(function (results) {
         $scope.ListOfAssets = results.data;
-
+        hideLoader();
     }, function (error) {
         //alert(error.data.message);
     });
@@ -93,30 +90,30 @@ app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageServ
    
 
 
-    ordersService.getProjects($scope.userName).then(function (results) {
+    //ordersService.getProjects($scope.userName).then(function (results) {
 
-        $scope.ListOfProjects = results.data;
-    }, function (error) {
-    });
+    //    $scope.ListOfProjects = results.data;
+    //}, function (error) {
+    //});
 
 
-    $scope.getAssetsByID = function (id) {
-        ordersService.getAssetsByID(id).then(function (results) {
+    //$scope.getAssetsByID = function (id) {
+    //    ordersService.getAssetsByID(id).then(function (results) {
 
-            $scope.Asset = results.data;
+    //        $scope.Asset = results.data;
 
-        }, function (error) {
-            //alert(error.data.message);
-        });
+    //    }, function (error) {
+    //        //alert(error.data.message);
+    //    });
 
-    }
+    //}
 
 
     
 
 
     $scope.saveAsset = function () {
-
+        showLoader();
         $scope.Asset.projectID = $scope.projectID;
         ordersService.saveAsset($scope.Asset, $scope.projectID, $scope.userName).then(function (response) {
             $scope.savedSuccessfully = true;
@@ -125,7 +122,7 @@ app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageServ
             $scope.showlist = true;
             $scope.Page = "Assets";
             $scope.isEditing = false;
-
+            hideLoader();
         },
          function (error) {
             
@@ -138,6 +135,7 @@ app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageServ
                  }
              }
              $scope.message = "Failed to add Asset due to:" + errors.join(' ');
+             hideLoader();
          });
     };
 
@@ -165,7 +163,7 @@ app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageServ
 
 
     $scope.updateAsset = function () {
-        debugger;
+        showLoader();
         //$scope.Asset.projectID = $scope.projectID;
 
      
@@ -178,6 +176,7 @@ app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageServ
             $scope.showlist = true;
             $scope.isEditing = false;
             $scope.Page = "Assets";
+            hideLoader();
         },
          function (response) {
              var errors = [];
@@ -187,6 +186,7 @@ app.controller('AssetsController', ['$scope', 'ordersService', 'localStorageServ
                  }
              }
              $scope.message = "Failed to update Asset due to:" + errors.join(' ');
+             hideLoader();
          });
     };
 

@@ -135,18 +135,101 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
         $scope.showlist = true;
         $scope.isEditing = false;
         $scope.Page = "Expense";
-    }  
+    }
+
+    $scope.capturePhotoNew = function () {
+        navigator.camera.getPicture($scope.onPhotoDataSuccessNew, $scope.onFail, {
+            quality: 500,
+            targetWidth: 350,
+            targeHeight: 350,
+            correctOrientation: true,
+            destinationType: destinationType.DATA_URL,
+            allowEdit: true,
+            saveToPhotoAlbum: true,
+        });
+    }
+    $scope.getPhoto = function (source) {
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture($scope.onPhotoURISuccessNew, $scope.onFail, {
+            quality: 500,
+            targetWidth: 350,
+            targeHeight: 350,
+            destinationType: destinationType.DATA_URL,
+            correctOrientation: true,
+            allowEdit: true,
+            sourceType: pictureSource.PHOTOLIBRARY
+        });
+    }
+
+
+
+    $scope.onPhotoURISuccessNew = function (imageData) {
+        alert(imageData);
+        //var _ImgObj = { ImageID: 0, FileName: "", bytestring: "", Size: 0 }
+
+        //imageData = "data:image/jpeg;base64," + imageData;
+
+        //var id = randomStringNew(5, '0123456789');
+        //_ImgObj.ImageID = id;
+
+        //$(".viewimage").show();
+        //$("#myModalforlist").modal("hide");
+
+        //var currentdate = new Date();
+        //var datetime = currentdate.getDate() + "/"
+        //            + (currentdate.getMonth() + 1) + "/"
+        //            + currentdate.getFullYear() + "@"
+        //            + currentdate.getHours() + ":"
+        //            + currentdate.getMinutes() + ":"
+        //            + currentdate.getSeconds();
+
+
+        //_ImgObj.FileName = localStorageService.get('AccountID') + datetime;
+        ////  _ImgObj.FileName = "IphoneLibrary";
+        //_ImgObj.bytestring = imageData;
+        //$scope.Image = _ImgObj;
+
+
+        ////updated
+        //$scope.myImage = '';
+        //$scope.myCroppedImage = '';
+
+        //$scope.myImage = imageData;
+
+
+
+        //CheckScopeBeforeApply();
+
+        //UsFullImg = true;
+
+
+        //$scope.uploadProfile();
+
+    }
+
+
+    $scope.onPhotoDataSuccessNew = function (imageData) {
+
+        alert(imageData);
+    }
+
+
+    $scope.onFail = function (message) {
+        log.error('Failed because: ' + message);
+    }
+
+
 
 
     $scope.getExpenseByProjectID = function (id) {
-
+        showLoader();
         $scope.projectID = id;
 
         ordersService.getExpenseByProjectID(id).then(function (results) {
 
             $scope.ListOfExpenses = results.data;         
-
-            $scope.getdatabyid(id);
+            hideLoader();
+            //$scope.getdatabyid(id);
 
         }, function (error) {
 
@@ -191,7 +274,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
     $scope.getdatabyid = function (id) {
 
-
+        showLoader();
 
         $scope.projectID = id;
 
@@ -202,9 +285,9 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
             ordersService.getCategoryByID(id).then(function (results) {
 
                 $scope.categories = results.data;
-
+                hideLoader();
             }, function (error) {
-                
+                hideLoader();
                 //alert(error.data.message);
             });
 

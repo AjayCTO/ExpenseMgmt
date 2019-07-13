@@ -25,7 +25,7 @@ app.controller('homeController', ['$scope', 'ordersService', 'localStorageServic
 
     $scope.getTransactionByID = function (id) {
 
-
+        showLoader();
         localStorageService.set('projectID', { projectID: id });
 
         ordersService.getTransactionByID(id).then(function (results) {   
@@ -34,6 +34,7 @@ app.controller('homeController', ['$scope', 'ordersService', 'localStorageServic
             $scope.totalcost = results.data.totalCost
             $scope.totalexpense = results.data.totalExpense
             $scope.totalincoming = results.data.totalIncoming
+         hideLoader();
 
         }, function (error) {
             //alert(error.data.message);
@@ -54,7 +55,7 @@ app.controller('homeController', ['$scope', 'ordersService', 'localStorageServic
         ordersService.getIncomingByProjectID(id).then(function (results) {
 
             $scope.ListOfIncomings = results.data;
-            hideLoader();
+          
 
         }, function (error) {
 

@@ -113,7 +113,7 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
 
 
     $scope.getIncomingsByProjectID = function (id) {
-
+        showLoader();
         $scope.Incoming.projectID = id;
 
         $scope.projectID = id;
@@ -122,9 +122,7 @@ app.controller('incomingController', ['$scope', 'ordersService', 'localStorageSe
 
             $scope.ListOfIncoming = results.data;
 
-            console.log("lit of incoming");
-            console.log($scope.ListOfIncoming);
-
+            hideLoader();
 
         }, function (error) {
             //alert(error.data.message);

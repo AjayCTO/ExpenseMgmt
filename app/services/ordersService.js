@@ -24,6 +24,18 @@ app.factory('ordersService', ['$http', 'ngAuthSettings', function ($http, ngAuth
     };
 
 
+    var _forgotPassword = function (Email) {
+
+        debugger;
+        return $http.get(serviceBase + 'api/Account/ForgotPassword', { params: { EmailAddress: Email } }).then(function (results) {
+
+            return results;
+        });
+    };
+
+ 
+
+
     var _getProjectByID = function (id) {
         return $http.get(serviceBase + 'api/Projects/GetProject', { params: { id: id } }).then(function (results) {
             return results;
@@ -285,7 +297,14 @@ app.factory('ordersService', ['$http', 'ngAuthSettings', function ($http, ngAuth
     };
 
 
-    
+    var _ResetPassword = function (otpform) {
+
+        debugger;
+        return $http.post(serviceBase + 'api/Account/Resetpassword', otpform).then(function (results) {
+
+            return results;
+        });
+    };
 
 
 
@@ -395,7 +414,8 @@ app.factory('ordersService', ['$http', 'ngAuthSettings', function ($http, ngAuth
 
     ordersServiceFactory.getOrders = _getOrders;
 
-
+    ordersServiceFactory.forgotPassword = _forgotPassword;
+    ordersServiceFactory.ResetPassword = _ResetPassword;
     ordersServiceFactory.getProjects = _getProjects;
     ordersServiceFactory.saveProject = _saveProject;
     ordersServiceFactory.getProjectByID = _getProjectByID;

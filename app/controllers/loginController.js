@@ -1,6 +1,6 @@
 ﻿'use strict';
-app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuthSettings', function ($scope, $location, authService, ngAuthSettings) {
-
+app.controller('loginController', ['$scope', '$location', 'authService', 'ordersService', 'ngAuthSettings', function ($scope, $location, authService, ordersService, ngAuthSettings) {
+    $scope.Otpform = {};
     $scope.loginData = {
         userName: "",
         password: "",
@@ -23,10 +23,34 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
         }
     });
 
+    $scope.Forgotpassword = function ()
+    {       
+        showLoader();
+        $scope.ForgotEmail
+        ordersService.forgotPassword($scope.ForgotEmail).then(function (results) {        
+            $("#ForgotModal").modal("hide");
+            hideLoader();
+            $("#OTP").modal("show");
+            $scope.ListOfProjects = results.data;
+        }, function (error) {
+
+        });
+    }
 
 
+    $scope.Updatepassword=function()
+    {
+        showLoader();
+      
+        ordersService.ResetPassword($scope.Otpform).then(function (results) {
+            $("#ForgotModal").modal("hide");
+            hideLoader();
+            $("#OTP").modal("show");
+            $scope.ListOfProjects = results.data;
+        }, function (error) {
 
-
+        });
+    }
 
     $scope.message = "";
 
@@ -46,7 +70,12 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
          });
     };
 
-   
+    $scope.openforgotmodal = function ()
+    {      
+        $("#ForgotModal").modal("show");
+    }
+
+
     $scope.authExternalProvider = function (provider) {
 
         var redirectUri = location.protocol + '//' + location.host + '/authcomplete.html';
