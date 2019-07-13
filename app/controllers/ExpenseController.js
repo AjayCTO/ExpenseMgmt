@@ -137,10 +137,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
         $scope.Page = "Expense";
     }
 
-    $scope.capturePhotoNew = function () {
-
-        alert("In");
-   
+    $scope.capturePhotoNew = function () {   
         navigator.camera.getPicture($scope.onPhotoDataSuccessNew, $scope.onFail, {
             quality: 50,
             targetWidth: 350,
@@ -171,7 +168,12 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
     $scope.onPhotoURISuccessNew = function () {
 
-        alert("imageData");
+        imageData = "data:image/jpeg;base64," + imageData;
+
+
+        $("#showUploaded123").attr("src", imageData);
+        $("#myModalforlist").modal("hide");
+
         //var _ImgObj = { ImageID: 0, FileName: "", bytestring: "", Size: 0 }
 
         //imageData = "data:image/jpeg;base64," + imageData;
@@ -219,8 +221,8 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
         imageData = "data:image/jpeg;base64," + imageData;
         
 
-
         $("#showUploaded123").attr("src", imageData);
+        $("#myModalforlist").modal("hide");
     }
 
 
