@@ -218,11 +218,14 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
 
     $scope.onPhotoDataSuccessNew = function (imageData) {
+
+        var realdata = imageData;
         imageData = "data:image/jpeg;base64," + imageData;
         
 
         $("#showUploaded123").attr("src", imageData);
         $("#myModalforlist").modal("hide");
+        $scope.Expense.ReceiptPath = realdata;
     }
 
 
