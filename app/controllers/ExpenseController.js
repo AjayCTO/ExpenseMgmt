@@ -164,7 +164,10 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
         });
     }
 
+    $scope.openfile = function () {
 
+        $("#myModalforlist").modal("show");
+    }
 
     $scope.onPhotoURISuccessNew = function () {
 
@@ -213,8 +216,11 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
 
     $scope.onPhotoDataSuccessNew = function (imageData) {
+        imageData = "data:image/jpeg;base64," + imageData;
+        
 
-        alert(imageData);
+
+        $("#showUploaded123").attr("src", imageData);
     }
 
 
