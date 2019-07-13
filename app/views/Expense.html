@@ -270,6 +270,15 @@
                                 <label>Receipt</label>
                                 <div class="dropzone" id="single-file-upload">
                                     <div class="fallback">
+                                     
+                                                <a class="btn btn-info" style="color:white" ng-click="capturePhotoNew();"> <i class="fa fa-camera"></i> Capture Photo</a>
+                                       
+
+                                                <!--<a ng-click="triggerFileClick()"><i class="fa fa-picture-o"></i> From Photo Library</a>-->
+                                        <a class="btn btn-success" style="color:white" ng-click="getPhoto()"><i class="fa fa-picture-o"></i> From Photo Library</a>
+                  
+
+
                                         <input type="file" id="fileName" multiple name="fileName" style="cursor:pointer" value="" />
                                         <img ng-if="Expense.ReceiptPath!=''" alt="Choose Image" id="showUploaded" style="width:89px;height:90px" src="{{Expense.ReceiptPath}}" />
 
@@ -279,11 +288,7 @@
                                     </div>
                                 </div>
                             </div>
-
-                <a ng-click="capturePhotoNew()"> <i class="fa fa-camera"></i> Capture Photo</a>
-
-
-                <a ng-click="getPhoto()"><i class="fa fa-picture-o"></i> From Photo Library</a>
+       
 
                 <div class="form-group">
 

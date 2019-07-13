@@ -138,6 +138,8 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
     }
 
     $scope.capturePhotoNew = function () {
+
+        alert("In");
    
         navigator.camera.getPicture($scope.onPhotoDataSuccessNew, $scope.onFail, {
             quality: 50,
@@ -164,8 +166,9 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
 
 
-    $scope.onPhotoURISuccessNew = function (imageData) {
-        alert(imageData);
+    $scope.onPhotoURISuccessNew = function () {
+
+        alert("imageData");
         //var _ImgObj = { ImageID: 0, FileName: "", bytestring: "", Size: 0 }
 
         //imageData = "data:image/jpeg;base64," + imageData;
