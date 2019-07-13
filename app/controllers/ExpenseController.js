@@ -138,7 +138,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
     }
 
     $scope.capturePhotoNew = function () {
-        alert();
+   
         navigator.camera.getPicture($scope.onPhotoDataSuccessNew, $scope.onFail, {
             quality: 50,
             targetWidth: 350,
@@ -150,7 +150,6 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
         });
     }
     $scope.getPhoto = function (source) {
-        alert(source);
         // Retrieve image file location from specified source
         navigator.camera.getPicture($scope.onPhotoURISuccessNew, $scope.onFail, {
             quality: 50,

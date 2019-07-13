@@ -24,7 +24,11 @@
     <variable name="PHOTOLIBRARY_ADD_USAGE_DESCRIPTION" value="Clearly Inventory needs to access your photos so that we can display images of your inventory." />
   </plugin>
 
+  <plugin name="cordova-plugin-file" source="npm" spec="~4.1.1"/>
+  <plugin name="cordova-plugin-file-transfer" source="npm" spec="~1.5.0"/>
+
   <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
+  <plugin name="cordova-plugin-android-permissions" source="npm" spec="~0.10.0"/>
     <icon src="icon.png" />
   
   <preference name="Fullscreen" value="true" />
