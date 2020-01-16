@@ -72,7 +72,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
     $scope.openEditModal = function (obj) {      
         //$scope.search = "";
-
+        debugger;
         $scope.Page="Edit Expense"
         localStorageService.remove('searchExpense');
         localStorageService.remove('searchIncoming');
@@ -101,70 +101,6 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
     }
 
-
-   
-
-    $scope.addnewexpense = function () {
-
-        $scope.search = "";
-        $scope.Page = "Create New Expense";
-        localStorageService.remove('searchExpense');
-        localStorageService.remove('searchIncoming');
-
-        $scope.Expense = {
-            ExpenseID: null,
-            ProjectID: null,
-            AssetID: null,
-            CategoryID: null,
-            SupplierID: null,
-            Date: "",
-            Amount: "",
-            Refrence: "",
-            ReceiptPath: "",
-            IsApproved: "",
-            Description: "",
-            AmountPaid:""
-        };
-
-
-        $scope.showlist = false;
-        $scope.isEditing = false;
-    }
-
-    $scope.showexpenselist = function () {
-        $scope.showlist = true;
-        $scope.isEditing = false;
-        $scope.Page = "Expense";
-    }
-
-    $scope.capturePhotoNew = function () {   
-        navigator.camera.getPicture($scope.onPhotoDataSuccessNew, $scope.onFail, {
-            quality: 50,
-            targetWidth: 350,
-            targeHeight: 350,
-            correctOrientation: true,
-            destinationType: destinationType.DATA_URL,
-            allowEdit: true,
-            saveToPhotoAlbum: true,
-        });
-    }
-    $scope.getPhoto = function (source) {
-        // Retrieve image file location from specified source
-        navigator.camera.getPicture($scope.onPhotoURISuccessNew, $scope.onFail, {
-            quality: 50,
-            targetWidth: 350,
-            targeHeight: 350,
-            destinationType: destinationType.DATA_URL,
-            correctOrientation: true,
-            allowEdit: true,
-            sourceType: pictureSource.PHOTOLIBRARY
-        });
-    }
-
-    $scope.openfile = function () {
-
-        $("#myModalforlist").modal("show");
-    }
 
     $scope.onPhotoURISuccessNew = function () {
 
@@ -221,7 +157,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
         var realdata = imageData;
         imageData = "data:image/jpeg;base64," + imageData;
-        
+
 
         $("#showUploaded").attr("src", imageData);
         $("#myModalforlist").modal("hide");
@@ -231,6 +167,71 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
 
     $scope.onFail = function (message) {
         log.error('Failed because: ' + message);
+    }
+
+   
+
+    $scope.addnewexpense = function () {
+
+        $scope.search = "";
+        $scope.Page = "Create New Expense";
+        localStorageService.remove('searchExpense');
+        localStorageService.remove('searchIncoming');
+
+        $scope.Expense = {
+            ExpenseID: null,
+            ProjectID: null,
+            AssetID: null,
+            CategoryID: null,
+            SupplierID: null,
+            Date: "",
+            Amount: "",
+            Refrence: "",
+            ReceiptPath: "",
+            IsApproved: "",
+            Description: "",
+            AmountPaid:""
+        };
+
+
+        $scope.showlist = false;
+        $scope.isEditing = false;
+    }
+
+    $scope.showexpenselist = function () {
+        $scope.showlist = true;
+        $scope.isEditing = false;
+        $scope.Page = "Expense";
+    }
+
+    $scope.capturePhotoNew = function () {   
+        navigator.camera.getPicture($scope.onPhotoDataSuccessNew, $scope.onFail, {
+            quality: 50,
+            targetWidth: 350,
+            targeHeight: 350,
+            correctOrientation: true,
+            destinationType: destinationType.DATA_URL,
+            allowEdit: true,
+            saveToPhotoAlbum: true,
+        });
+    }
+    $scope.getPhoto = function (source) {
+        debugger;
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture($scope.onPhotoURISuccessNew, $scope.onFail, {
+            quality: 50,
+            targetWidth: 350,
+            targeHeight: 350,
+            destinationType: destinationType.DATA_URL,
+            correctOrientation: true,
+            allowEdit: true,
+            sourceType: pictureSource.PHOTOLIBRARY
+        });
+    }
+
+    $scope.openfile = function () {
+
+        $("#myModalforlist").modal("show");
     }
 
 
@@ -288,7 +289,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
     //$scope.getAll();
 
     $scope.getdatabyid = function (id) {
-
+        debugger;
         showLoader();
 
         $scope.projectID = id;

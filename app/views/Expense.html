@@ -133,7 +133,7 @@
 
                 <img ng-if="obj.receiptPath==''" style="height: 50px; width: 50px;" src="https://static.thenounproject.com/png/220984-200.png" alt="Alternate Text" />
                 <a data-ng-click="makezoom(obj.receiptPath)">
-                    <img ng-if="obj.receiptPath!=''" src="{{obj.receiptPath}}" alt="Alternate Text" style="width: 50px; height: 50px;  border: 1px solid #ccc; border-radius: 100% !important;" />
+                    <img ng-if="obj.receiptPath!=''" src="data:image/jpeg;base64,{{obj.receiptPath}}" alt="Alternate Text" style="width: 50px; height: 50px;  border: 1px solid #ccc; border-radius: 100% !important;" />
                 </a>
                 <!--<img src="https://image.flaticon.com/icons/png/128/149/149071.png" alt="" class="img-rounded img-responsive">-->
             </div>
@@ -272,7 +272,7 @@
                     <div class="fallback" style="text-align: center;">
                         <input style="display:none" type="file" id="fileName" name="fileName" value="" />
 
-                        <img ng-if="Expense.ReceiptPath!=''" ng-click="openfile()" alt="Choose Image" id="showUploaded" style="width: 89px; height: 90px; border: 1px solid #ccc; border-radius: 100% !important" src="{{Incoming.ReceiptPath}}" />
+                        <img ng-if="Expense.ReceiptPath!=''" ng-click="openfile()" alt="Choose Image" id="showUploaded" style="width: 89px; height: 90px; border: 1px solid #ccc; border-radius: 100% !important" src="data:image/jpeg;base64,{{Expense.ReceiptPath}}" />
 
 
                         <img ng-if="Expense.ReceiptPath==''" ng-click="openfile()" alt="Choose Image" id="showUploaded" style="width: 89px; height: 90px; border: 1px solid #ccc; border-radius: 100% !important; " src="https://static.thenounproject.com/png/220984-200.png" />
@@ -381,7 +381,7 @@
 
             </div>
             <div class="modal-body">
-                <img src="{{enlargeimage}}" alt="Alternate Text" />
+                <img src="data:image/jpeg;base64,{{enlargeimage}}" alt="Alternate Text" />
             </div>
             <div class="modal-footer">
 
