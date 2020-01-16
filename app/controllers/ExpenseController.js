@@ -171,7 +171,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
         imageData = "data:image/jpeg;base64," + imageData;
 
 
-        $("#showUploaded123").attr("src", imageData);
+        $("#showUploaded").attr("src", imageData);
         $("#myModalforlist").modal("hide");
 
         //var _ImgObj = { ImageID: 0, FileName: "", bytestring: "", Size: 0 }
@@ -223,7 +223,7 @@ app.controller('ExpenseController', ['$scope', '$rootScope', 'ordersService', 'l
         imageData = "data:image/jpeg;base64," + imageData;
         
 
-        $("#showUploaded123").attr("src", imageData);
+        $("#showUploaded").attr("src", imageData);
         $("#myModalforlist").modal("hide");
         $scope.Expense.ReceiptPath = realdata;
     }
