@@ -32,7 +32,7 @@
   <preference name="Fullscreen" value="true" />
   <preference name="orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="14" />
+    <preference name="android-minSdkVersion" value=" 17" />
     <preference name="fullscreen" value="false" />
   <preference name="StatusBarOverlaysWebView" value="false" />
   <preference name="StatusBarBackgroundColor" value="#ffffff" />
